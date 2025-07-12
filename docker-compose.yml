@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: animebot
+      POSTGRES_USER: animeuser
+      POSTGRES_PASSWORD: animepass
+    ports:
+      - "5444:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init_favorites.sql:/docker-entrypoint-initdb.d/init_favorites.sql
+  bot:
+    build: .
+    command: python main.py
+    environment:
+      - TOKEN=${TOKEN}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=animebot
+      - DB_USER=animeuser
+      - DB_PASSWORD=animepass
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
