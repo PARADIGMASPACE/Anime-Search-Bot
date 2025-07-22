@@ -5,14 +5,27 @@ services:
     image: postgres:16
     restart: always
     environment:
-      POSTGRES_DB: animebot
-      POSTGRES_USER: animeuser
-      POSTGRES_PASSWORD: animepass
+      POSTGRES_DB: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
     ports:
       - "5444:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init_favorites.sql:/docker-entrypoint-initdb.d/init_favorites.sql
+    networks:
+      - backend
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - backend
+
   bot:
     build: .
     command: python main.py
@@ -20,11 +33,33 @@ services:
       - TOKEN=${TOKEN}
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=animebot
-      - DB_USER=animeuser
-      - DB_PASSWORD=animepass
+      - DB_NAME=postgres
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       - db
+      - redis
+      - libretranslate
+    networks:
+      - backend
+
+  libretranslate:
+    image: libretranslate/libretranslate
+    container_name: libretranslate
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      - LT_LOAD_ONLY=en,ru
+    networks:
+      - backend
+
 
 volumes:
   pgdata:
+  redisdata:
+
+networks:
+  backend:

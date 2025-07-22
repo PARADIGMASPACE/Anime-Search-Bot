@@ -1,43 +1,104 @@
+import asyncio
 import aiohttp
 from loguru import logger
 
-async def get_data_release_anime(anime_title: str):
-    query = '''
-query ($search: String) {
-  Media(search: $search, type: ANIME) {
-    id
-    title {
-      native
-      romaji
-      english
-    }
-    description(asHtml: false)
-    coverImage {
-      extraLarge
-    }
-    averageScore
-    episodes
-    status
-    genres
-    duration
-    type
-    startDate {
-      year
-      month
-      day
-    }
-    airingSchedule(perPage: 100) {
-      nodes {
-        episode
-        airingAt
+_ANILIST_QUERY = '''
+    query ($id: Int) {
+      Media(id: $id, type: ANIME) {
+        id
+        title {
+          native
+          romaji
+          english
+        }
+        description(asHtml: false)
+        coverImage {
+          extraLarge
+        }
+        averageScore
+        episodes
+        status
+        genres
+        duration
+        type
+        startDate {
+          year
+          month
+          day
+        }
+        airingSchedule(perPage: 100) {
+          nodes {
+            episode
+            airingAt
+          }
+        }
       }
     }
-  }
-}
-    '''
-    variables = {"search": anime_title}
-    async with aiohttp.ClientSession() as session:
-        async with session.post("https://graphql.anilist.co", json={"query": query, "variables": variables}) as resp:
-            logger.debug(f"{await resp.json()}")
-            return await resp.json()
+'''
 
+_ANILIST_QUERY_BY_MAL_ID = '''
+    query ($idMal: Int) {
+      Media(idMal: $idMal, type: ANIME) {
+        id
+        title {
+          native
+          romaji
+          english
+        }
+        description(asHtml: false)
+        coverImage {
+          extraLarge
+        }
+        averageScore
+        episodes
+        status
+        genres
+        duration
+        type
+        startDate {
+          year
+          month
+          day
+        }
+        airingSchedule(perPage: 100) {
+          nodes {
+            episode
+            airingAt
+          }
+        }
+      }
+    }
+'''
+
+
+async def _fetch_anilist(variables: dict, query):
+    query = query
+    max_retries = 3
+
+    async with aiohttp.ClientSession() as session:
+        for attempt in range(max_retries):
+            try:
+                async with session.post("https://graphql.anilist.co",
+                                        json={"query": query, "variables": variables}) as resp:
+                    if resp.status == 429:
+                        logger.warning(f"Rate limited, retrying in {2 ** attempt} seconds...")
+                        await asyncio.sleep(2 ** attempt)
+                        continue
+                    elif resp.status != 200:
+                        logger.error(f"Unexpected status {resp.status}")
+                        return {}
+                    return await resp.json()
+            except Exception as e:
+                logger.error(f"Error on attempt {attempt + 1}: {e}")
+                if attempt == max_retries - 1:
+                    return {}
+                await asyncio.sleep(1)
+    return {}
+
+
+async def get_info_about_anime_from_anilist_by_id(anime_id: int):
+    return await _fetch_anilist({"id": anime_id}, query=_ANILIST_QUERY)
+
+
+async def get_info_about_anime_from_anilist_by_mal_id(mal_id: int):
+    return await _fetch_anilist({"idMal": mal_id}, query=_ANILIST_QUERY_BY_MAL_ID)

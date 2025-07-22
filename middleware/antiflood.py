@@ -5,7 +5,7 @@ from aiogram.types import TelegramObject, Message, CallbackQuery
 
 
 class AntiFloodMiddleware(BaseMiddleware):
-    def __init__(self, rate_limit: float = 1.0):
+    def __init__(self, rate_limit: float = 1.5):
         self.rate_limit = rate_limit
         self.user_timeouts: Dict[int, float] = {}
 
@@ -30,7 +30,7 @@ class AntiFloodMiddleware(BaseMiddleware):
             if isinstance(event, CallbackQuery):
                 await event.answer("Слишком быстро! Подождите секунду.", show_alert=True)
             elif isinstance(event, Message):
-                await event.answer("Слишком быстро! Подождите секунду.")
+                await event.answer("Слишком быстро! Подождите секунду.", show_alert=True)
             return
 
         self.user_timeouts[user_id] = current_time
