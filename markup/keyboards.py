@@ -1,5 +1,4 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from loguru import logger
 
 
 def get_main_menu_keyboard():
@@ -40,7 +39,8 @@ def get_anime_selection_keyboard(multiple_results):
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
-def get_anime_menu_keyboard(shikimori_id: int, is_favorite: bool, anime_id: int = None, from_favorites: bool = False) -> InlineKeyboardMarkup:
+def get_anime_menu_keyboard(shikimori_id: int, is_favorite: bool, anime_id: int = None,
+                            from_favorites: bool = False) -> InlineKeyboardMarkup:
     if is_favorite and anime_id:
         action = "remove_fav"
         action_id = f"{anime_id}:{shikimori_id}"
@@ -57,10 +57,10 @@ def get_anime_menu_keyboard(shikimori_id: int, is_favorite: bool, anime_id: int 
         [InlineKeyboardButton(text="Назад", callback_data=back_action)]
     ])
 
+
 def get_favorites_list_keyboard(favorites_list):
     buttons = []
     for fav in favorites_list:
-        logger.info(fav)
         title = fav.get("title_ru", "anime_title") or "Без названия"
         if len(title) > 35:
             title = title[:32] + "..."

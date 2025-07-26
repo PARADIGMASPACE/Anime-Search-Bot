@@ -293,7 +293,6 @@ def format_anime_json_info(data_from_shikimori, data_from_anilist):
         "type_info": type_info,
         "status": status
     }
-
     return result
 
 
@@ -344,7 +343,6 @@ async def format_anime_caption(json_with_anime_info):
             'Saturday': 'Суббота',
             'Sunday': 'Воскресенье'
         }[day]
-        date_str = dt.strftime('%d.%m.%Y')
         month_year = dt.strftime('%Y') + ' ' + {
             'January': 'Январь',
             'February': 'Февраль',
@@ -389,8 +387,8 @@ async def format_anime_caption(json_with_anime_info):
         "status_anilist")
 
 
-    cover_image = json_with_anime_info.get("cover_image").get("image_anilist") or json_with_anime_info.get(
-        "cover_image").get("image_shikimori")
+    cover_image = json_with_anime_info.get("cover_image").get("image_shikimori") or json_with_anime_info.get(
+        "cover_image").get("image_anilist")
 
 
     caption_parts = [f"📛 <b>Название:</b> {title}"]

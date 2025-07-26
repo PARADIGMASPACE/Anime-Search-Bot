@@ -1,5 +1,7 @@
 from aiogram import types, Router, F
 from aiogram.types import InputMediaPhoto
+from loguru import logger
+
 from api.shikimori import get_many_info_about_anime_from_shikimori
 from cache.anime_cache import anime_cache
 from markup.keyboards import get_anime_selection_keyboard, get_anime_menu_keyboard
@@ -20,7 +22,6 @@ async def handle_anime_view(message: types.Message):
     else:
         multiple_results = await get_many_info_about_anime_from_shikimori(message.text)
         filtered_anime = filter_top_anime(multiple_results, query=message.text, top_n=5)
-
         await anime_cache.cache_search_results(message.from_user.id, message.text, filtered_anime)
 
 

@@ -8,12 +8,8 @@ async def translate_text(text: str, source: str = "en", target: str = "ru") -> s
         "target": target,
         "format": "text"
     }
-    try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.post(url, json=payload, timeout=10)
-            resp.raise_for_status()
-            return resp.json()["translatedText"]
-    except Exception as e:
-        # Можно логировать ошибку, если нужно
-        # print(f"Translation error: {e}")
-        return text  # Возвращаем исходный текст при ошибке
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, json=payload)
+        resp.raise_for_status()
+        return resp.json()["translatedText"]
+

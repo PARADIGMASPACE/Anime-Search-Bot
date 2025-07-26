@@ -41,7 +41,7 @@ async def back_to_selection(callback: types.CallbackQuery):
 
     last_search = await anime_cache.get_user_last_search(user_id)
     if not last_search:
-        await callback.answer("Результаты поиска не найдены.", show_alert=True)
+        await callback.answer("Результаты поиска не найдены. Поищите заново", show_alert=True)
         return
 
     query = last_search['query']
