@@ -1,6 +1,5 @@
 import asyncio
 import aiohttp
-from loguru import logger
 
 _ANILIST_QUERY = '''
     query ($id: Int) {
@@ -81,15 +80,12 @@ async def _fetch_anilist(variables: dict, query):
                 async with session.post("https://graphql.anilist.co",
                                         json={"query": query, "variables": variables}) as resp:
                     if resp.status == 429:
-                        logger.warning(f"Rate limited, retrying in {2 ** attempt} seconds...")
                         await asyncio.sleep(2 ** attempt)
                         continue
                     elif resp.status != 200:
-                        logger.error(f"Unexpected status {resp.status}")
                         return {}
                     return await resp.json()
             except Exception as e:
-                logger.error(f"Error on attempt {attempt + 1}: {e}")
                 if attempt == max_retries - 1:
                     return {}
                 await asyncio.sleep(1)

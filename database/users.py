@@ -46,16 +46,3 @@ async def set_user_language(telegram_user_id: int, language_code: str):
                 """,
                 language_row["id"], language_code, telegram_user_id
             )
-
-
-async def get_all_users():
-    pool = await get_db_pool()
-    async with pool.acquire() as conn:
-        users = await conn.fetch(
-            """
-            SELECT u.telegram_user_id, l.code AS language_code
-            FROM users u
-            LEFT JOIN languages l ON u.preferred_language_id = l.id
-            """
-        )
-    return [dict(row) for row in users]

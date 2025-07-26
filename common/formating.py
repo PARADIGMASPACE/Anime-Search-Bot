@@ -3,7 +3,7 @@ import html
 import re
 from datetime import datetime
 from api.translate import translate_text
-
+from utils.i18n import i18n
 
 def _get_id(data_from_shikimori, data_from_anilist):
     result_id = {
@@ -169,7 +169,11 @@ def _remove_last_sentences(text, n=2):
 def _format_description(description, schedule_text):
     if description is None:
         return None
+
     len_description = len(description)
+
+    if len_description < 200:
+        return None
 
     if len_description > 900:
         description = _remove_last_sentences(description, 2)
@@ -294,10 +298,11 @@ def format_anime_json_info(data_from_shikimori, data_from_anilist):
         "type_info": type_info,
         "status": status
     }
+    logger.debug(result)
     return result
 
 
-async def format_anime_caption(json_with_anime_info):
+async def format_anime_caption(json_with_anime_info, lang: str = None):
     anilist_id_raw = json_with_anime_info.get("id", {}).get("anilist_id")
     try:
         anilist_id = int(anilist_id_raw) if anilist_id_raw not in (None, "") else None
@@ -322,44 +327,22 @@ async def format_anime_caption(json_with_anime_info):
         "release_date").get("release_data_anilist")
 
     episode_count = json_with_anime_info.get("episode_count").get("episode_count_anilist") or json_with_anime_info.get(
-        "episode_count").get(
-        "episode_count_shikimori")
+        "episode_count").get("episode_count_shikimori")
 
     airing_schedule = json_with_anime_info.get("airing_schedule", {}).get("airing_schedule_coming", [])
 
     def format_episode(ep):
         dt = datetime.fromtimestamp(ep.get('airingAt'))
-        day = dt.strftime('%A')
-        day_ru = {
-            'Monday': 'Понедельник',
-            'Tuesday': 'Вторник',
-            'Wednesday': 'Среда',
-            'Thursday': 'Четверг',
-            'Friday': 'Пятница',
-            'Saturday': 'Суббота',
-            'Sunday': 'Воскресенье'
-        }[day]
-        month_year = dt.strftime('%Y') + ' ' + {
-            'January': 'Январь',
-            'February': 'Февраль',
-            'March': 'Март',
-            'April': 'Апрель',
-            'May': 'Май',
-            'June': 'Июнь',
-            'July': 'Июль',
-            'August': 'Август',
-            'September': 'Сентябрь',
-            'October': 'Октябрь',
-            'November': 'Ноябрь',
-            'December': 'Декабрь'
-        }[dt.strftime('%B')]
+        day_key = f"anime.days.{dt.strftime('%A').lower()}"
+        month_key = f"anime.months.{dt.strftime('%B').lower()}"
+        month_year = dt.strftime('%Y') + ' ' + i18n.t(month_key, lang=lang)
         time = dt.strftime('%H:%M')
-        return f"Серия {ep.get('episode')}: {month_year}, {day_ru}, {time}"
+        return i18n.t("anime.episode", lang=lang, number=ep.get('episode'), month_year=month_year, day=i18n.t(day_key, lang=lang), time=time)
 
     airing_schedule_str = "\n".join([format_episode(ep) for ep in airing_schedule[:3]])
 
-    decs_shikimori = json_with_anime_info.get("description").get("desc_shikimori")
-    description = decs_shikimori
+    desc_shikimori = json_with_anime_info.get("description").get("desc_shikimori")
+    description = desc_shikimori
 
     if not description:
         desc_anilist = json_with_anime_info.get("description").get("desc_anilist")
@@ -379,34 +362,34 @@ async def format_anime_caption(json_with_anime_info):
 
     status = json_with_anime_info.get("status").get("status_shikimori") or json_with_anime_info.get("status").get(
         "status_anilist")
+    cover_image = json_with_anime_info.get("cover_image").get("image_anilist") or json_with_anime_info.get("cover_image").get("image_shikimori")
 
-    cover_image = json_with_anime_info.get("cover_image").get("image_shikimori") or json_with_anime_info.get(
-        "cover_image").get("image_anilist")
-
-    caption_parts = [f"📛 <b>Название:</b> {title}"]
+    caption_parts = []
+    if title:
+        caption_parts.append(f"<b>{i18n.t('anime.name', lang=lang)}:</b> {title}")
 
     if type_info:
         type_info = _format_type(type_info)
-        caption_parts.append(f"📺 <b>Тип:</b> {type_info}")
+        caption_parts.append(f"<b>{i18n.t('anime.type', lang=lang)}:</b> {type_info}")
 
     if status:
         formatted_status = _format_status(status, json_with_anime_info.get("status"))
-        caption_parts.append(f"ℹ️ <b>Статус:</b> {formatted_status}")
+        caption_parts.append(f"ℹ<b>{i18n.t('anime.status', lang=lang)}:</b> {formatted_status}")
 
     if genres:
-        caption_parts.append(f"🎭 <b>Жанры:</b> {', '.join(map(html.escape, genres))}")
+        caption_parts.append(f"<b>{i18n.t('anime.genres', lang=lang)}:</b> {', '.join(map(html.escape, genres))}")
 
     if rating is not None and rating > 0:
-        caption_parts.append(f"⭐️ <b>Рейтинг:</b> {rating}")
+        caption_parts.append(f"<b>{i18n.t('anime.rating', lang=lang)}:</b> {rating}")
 
     if episode_count is not None and episode_count > 0:
-        caption_parts.append(f"🎮 <b>Эпизодов:</b> {episode_count}")
+        caption_parts.append(f"<b>{i18n.t('anime.episodes', lang=lang)}:</b> {episode_count}")
 
     if release_date:
-        caption_parts.append(f"🗓 <b>Дата выхода:</b> {release_date}")
+        caption_parts.append(f"<b>{i18n.t('anime.release_date', lang=lang)}:</b> {release_date}")
 
     if airing_schedule:
-        caption_parts.append(f"<b>📅 Ближайшие серии:</b>\n{airing_schedule_str}")
+        caption_parts.append(f"<b>{i18n.t('anime.upcoming_episodes', lang=lang)}:</b>\n{airing_schedule_str}")
 
     if formatted_description:
         caption_parts.append(formatted_description)

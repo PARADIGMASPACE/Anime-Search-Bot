@@ -12,7 +12,6 @@ class RedisClient:
         self.port = int(os.getenv('REDIS_PORT', '6379'))
 
     async def connect(self):
-        """Подключение к Redis"""
         try:
             self.redis = redis.Redis(
                 host=self.host,
@@ -26,13 +25,10 @@ class RedisClient:
             raise
 
     async def disconnect(self):
-        """Отключение от Redis"""
         if self.redis:
             await self.redis.close()
-            logger.info("Отключен от Redis")
 
     async def set(self, key: str, value: Any, expire: int = 3600):
-        """Установка значения с TTL"""
         if not self.redis:
             await self.connect()
 
@@ -42,7 +38,6 @@ class RedisClient:
         await self.redis.set(key, value, ex=expire)
 
     async def get(self, key: str) -> Optional[Any]:
-        """Получение значения"""
         if not self.redis:
             await self.connect()
 
@@ -55,19 +50,16 @@ class RedisClient:
         return None
 
     async def delete(self, key: str):
-        """Удаление ключа"""
         if not self.redis:
             await self.connect()
 
         await self.redis.delete(key)
 
     async def exists(self, key: str) -> bool:
-        """Проверка существования ключа"""
         if not self.redis:
             await self.connect()
 
         return await self.redis.exists(key)
 
 
-# Глобальный экземпляр
 redis_client = RedisClient()

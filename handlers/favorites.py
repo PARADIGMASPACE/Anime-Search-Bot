@@ -4,19 +4,15 @@ from cache.anime_cache import anime_cache
 from markup.keyboards import get_favorites_list_keyboard, get_anime_menu_keyboard, get_main_menu_keyboard
 from database.favorites import *
 from services.favorite_service import formating_data_to_db
+from utils.i18n import i18n
+
 
 favorite_router = Router()
 
 
 @favorite_router.message(Command("favorites"))
-async def show_favorites(message: types.Message):
+async def show_favorites(message: types.Message, lang: str = None):
     user_id = message.from_user.id
-    last_msg_id = await anime_cache.get_last_bot_message_id(user_id)
-    if last_msg_id:
-        try:
-            await message.bot.delete_message(message.chat.id, last_msg_id)
-        except Exception:
-            pass
     cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorites_list = cached_favorites
@@ -25,13 +21,12 @@ async def show_favorites(message: types.Message):
         favorites_list = [dict(row) for row in favorites_raw]
         await anime_cache.cache_user_favorites(user_id, favorites_list)
     if not favorites_list:
-        msg = await message.answer("У вас нет избранных аниме.")
+        msg = await message.answer(i18n.t("favorites.empty", lang=lang))
         await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
     else:
         keyboard = get_favorites_list_keyboard(favorites_list)
         msg = await message.answer(
-            f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
-            "Нажмите на название для просмотра информации или ❌ для удаления:",
+            i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
         )
         await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
@@ -39,7 +34,7 @@ async def show_favorites(message: types.Message):
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
-async def show_favorites(callback: types.CallbackQuery):
+async def show_favorites(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
 
     cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
@@ -51,7 +46,7 @@ async def show_favorites(callback: types.CallbackQuery):
         await anime_cache.cache_user_favorites(user_id, favorite_anime)
 
     if not favorite_anime:
-        text = "У вас нет избранных аниме."
+        text = i18n.t("favorites.empty", lang=lang)
         keyboard = None
     else:
         favorites_list = [
@@ -63,10 +58,7 @@ async def show_favorites(callback: types.CallbackQuery):
             }
             for row in favorite_anime
         ]
-        text = (
-            f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
-            "Нажмите на название для просмотра информации или ❌ для удаления:"
-        )
+        text = i18n.t("favorites.list_title", lang=lang, count=len(favorites_list))
         keyboard = get_favorites_list_keyboard(favorites_list)
 
     if callback.message.photo:
@@ -85,13 +77,13 @@ async def show_favorites(callback: types.CallbackQuery):
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("add_favorite:"))
-async def add_favorite(callback: types.CallbackQuery):
+async def add_favorite(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
     shikimori_id = int(callback.data.split(":")[1])
 
     cached_anime = await anime_cache.get_cached_anime(shikimori_id)
     if not cached_anime:
-        await callback.answer("Данные аниме не найдены в кеше", show_alert=True)
+        await callback.answer(i18n.t("favorites.not_found", lang=lang), show_alert=True)
         return
 
     anilist_id = cached_anime.get("anilist_id", 0)
@@ -106,11 +98,11 @@ async def add_favorite(callback: types.CallbackQuery):
 
     keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=True, anime_id=anime_id)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
-    await callback.answer("Добавлено в избранное")
+    await callback.answer(i18n.t("favorites.added", lang=lang))
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("remove_fav:"))
-async def remove_favorite_from_list(callback: types.CallbackQuery):
+async def remove_favorite_from_list(callback: types.CallbackQuery, lang: str = None):
     parts = callback.data.split(":")
     user_id = callback.from_user.id
     if len(parts) == 3:
@@ -128,7 +120,7 @@ async def remove_favorite_from_list(callback: types.CallbackQuery):
             shikimori_id = 0
         keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=False, anime_id=anime_id)
         await callback.message.edit_reply_markup(reply_markup=keyboard)
-        await callback.answer("Удалено из избранного")
+        await callback.answer(i18n.t("favorites.removed", lang=lang))
         return
 
     favorites_raw = await get_favorite_anime_user(user_id)
@@ -136,36 +128,35 @@ async def remove_favorite_from_list(callback: types.CallbackQuery):
 
     if not favorites_list:
         await callback.message.edit_text(
-            "Ваш список избранного пуст. Выберите действие:",
+            i18n.t("favorites.empty_after_remove", lang=lang),
             reply_markup=get_main_menu_keyboard()
         )
     else:
         keyboard = get_favorites_list_keyboard(favorites_list)
         await callback.message.edit_text(
-            f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
-            "Нажмите на название для просмотра информации или ❌ для удаления:",
+            i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
         )
-    await callback.answer("Удалено из избранного")
+    await callback.answer(i18n.t("favorites.removed", lang=lang))
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("clear_favorites"))
-async def clear_favorites(callback: types.CallbackQuery):
+async def clear_favorites(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
 
     await clear_favorites_user(user_id)
     await anime_cache.invalidate_user_favorites(user_id)
 
     await callback.message.edit_text(
-        "Ваш список избранного успешно очищен! Выберите действие:",
+        i18n.t("favorites.cleared_success", lang=lang),
         reply_markup=get_main_menu_keyboard()
     )
 
-    await callback.answer("Список избранного очищен")
+    await callback.answer(i18n.t("favorites.cleared", lang=lang))
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("favorites_page:"))
-async def favorites_page_callback(callback: types.CallbackQuery):
+async def favorites_page_callback(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
     page = int(callback.data.split(":")[1])
 
@@ -178,17 +169,16 @@ async def favorites_page_callback(callback: types.CallbackQuery):
         await anime_cache.cache_user_favorites(user_id, favorites_list)
 
     if not favorites_list:
-        await callback.message.edit_text("У вас нет избранных аниме.")
+        await callback.message.edit_text(i18n.t("favorites.empty", lang=lang))
     else:
         keyboard = get_favorites_list_keyboard(favorites_list, page=page)
         await callback.message.edit_text(
-            f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
-            "Нажмите на название для просмотра информации или ❌ для удаления:",
+            i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
         )
     await callback.answer()
 
 
 @favorite_router.message(~F.text)
-async def handle_media_message(message: types.Message):
-    await message.answer("Для поиска аниме отправьте текстовое сообщение с названием.")
+async def handle_media_message(message: types.Message, lang: str = None):
+    await message.answer(i18n.t("favorites.search_text_only", lang=lang))

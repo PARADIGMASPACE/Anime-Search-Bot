@@ -1,7 +1,7 @@
 from database.database import get_db_pool
 
 
-# Python
+
 async def upsert_anime(anime_data: dict):
     pool = await get_db_pool()
     async with pool.acquire() as conn:
