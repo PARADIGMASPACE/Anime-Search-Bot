@@ -9,6 +9,7 @@ from common.commands_bot import commands
 from cache.redis_client import redis_client
 
 from middleware.antiflood import AntiFloodMiddleware
+from middleware.language import LanguageMiddleware
 
 from handlers.search import search_router
 from handlers.favorites import favorite_router
@@ -20,9 +21,14 @@ load_dotenv(find_dotenv())
 bot = Bot(token=os.getenv("TOKEN"))
 
 dp = Dispatcher()
-dp.message.middleware(AntiFloodMiddleware(rate_limit=3.0))
-dp.callback_query.middleware(AntiFloodMiddleware(rate_limit=1.0))
-dp.include_routers(router,search_router,favorite_router,navigation_router)
+dp.message.middleware(LanguageMiddleware())
+dp.callback_query.middleware(LanguageMiddleware())
+
+dp.message.middleware(AntiFloodMiddleware())
+dp.callback_query.middleware(AntiFloodMiddleware())
+
+for router_module in [router, search_router, favorite_router, navigation_router]:
+    dp.include_router(router_module)
 
 async def main():
     await redis_client.connect()

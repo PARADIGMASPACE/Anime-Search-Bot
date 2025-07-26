@@ -37,6 +37,7 @@ async def show_favorites(message: types.Message):
         await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
     await message.delete()
 
+
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
 async def show_favorites(callback: types.CallbackQuery):
     user_id = callback.from_user.id
@@ -82,6 +83,7 @@ async def show_favorites(callback: types.CallbackQuery):
 
     await callback.answer()
 
+
 @favorite_router.callback_query(lambda c: c.data.startswith("add_favorite:"))
 async def add_favorite(callback: types.CallbackQuery):
     user_id = callback.from_user.id
@@ -105,6 +107,7 @@ async def add_favorite(callback: types.CallbackQuery):
     keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=True, anime_id=anime_id)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
     await callback.answer("Добавлено в избранное")
+
 
 @favorite_router.callback_query(lambda c: c.data.startswith("remove_fav:"))
 async def remove_favorite_from_list(callback: types.CallbackQuery):
@@ -145,6 +148,7 @@ async def remove_favorite_from_list(callback: types.CallbackQuery):
         )
     await callback.answer("Удалено из избранного")
 
+
 @favorite_router.callback_query(lambda c: c.data.startswith("clear_favorites"))
 async def clear_favorites(callback: types.CallbackQuery):
     user_id = callback.from_user.id
@@ -158,6 +162,31 @@ async def clear_favorites(callback: types.CallbackQuery):
     )
 
     await callback.answer("Список избранного очищен")
+
+
+@favorite_router.callback_query(lambda c: c.data.startswith("favorites_page:"))
+async def favorites_page_callback(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    page = int(callback.data.split(":")[1])
+
+    cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
+    if cached_favorites:
+        favorites_list = cached_favorites
+    else:
+        favorites_raw = await get_favorite_anime_user(user_id)
+        favorites_list = [dict(row) for row in favorites_raw]
+        await anime_cache.cache_user_favorites(user_id, favorites_list)
+
+    if not favorites_list:
+        await callback.message.edit_text("У вас нет избранных аниме.")
+    else:
+        keyboard = get_favorites_list_keyboard(favorites_list, page=page)
+        await callback.message.edit_text(
+            f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
+            "Нажмите на название для просмотра информации или ❌ для удаления:",
+            reply_markup=keyboard
+        )
+    await callback.answer()
 
 
 @favorite_router.message(~F.text)
