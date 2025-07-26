@@ -20,6 +20,10 @@ class AnimeCache:
         """Генерация ключа для избранного пользователя"""
         return f"favorites:{user_id}"
 
+    def _get_last_msg_key(self, user_id: int) -> str:
+        """Ключ для последнего сообщения бота пользователю"""
+        return f"last_bot_msg:{user_id}"
+
     async def cache_anime(self, shikimori_id: int, caption: str, cover_image: str, anilist_id: int):
         """Кеширование готовой информации об аниме для отображения"""
         try:
@@ -149,5 +153,28 @@ class AnimeCache:
         except Exception as e:
             logger.error(f"Ошибка получения последнего поиска {user_id}: {e}")
             return None
+
+    async def save_last_bot_message_id(self, user_id: int, message_id: int):
+        """Сохранение ID последнего сообщения бота пользователю"""
+        try:
+            key = self._get_last_msg_key(user_id)
+            await redis_client.set(key, message_id, expire=self.search_ttl)
+            logger.debug(f"ID последнего сообщения бота для пользователя {user_id} сохранен")
+        except Exception as e:
+            logger.error(f"Ошибка сохранения ID последнего сообщения бота для пользователя {user_id}: {e}")
+
+    async def get_last_bot_message_id(self, user_id: int) -> Optional[int]:
+        """Получение ID последнего сообщения бота пользователю"""
+        try:
+            key = self._get_last_msg_key(user_id)
+            msg_id = await redis_client.get(key)
+            if msg_id is not None:
+                try:
+                    return int(msg_id)
+                except Exception:
+                    return None
+        except Exception as e:
+            logger.error(f"Ошибка получения ID последнего сообщения бота для пользователя {user_id}: {e}")
+        return None
 
 anime_cache = AnimeCache()

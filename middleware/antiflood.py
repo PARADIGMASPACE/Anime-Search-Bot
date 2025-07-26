@@ -31,6 +31,10 @@ class AntiFloodMiddleware(BaseMiddleware):
                 await event.answer("Слишком быстро! Подождите секунду.", show_alert=True)
             elif isinstance(event, Message):
                 await event.answer("Слишком быстро! Подождите секунду.", show_alert=True)
+                try:
+                    await event.delete()
+                except Exception:
+                    pass
             return
 
         self.user_timeouts[user_id] = current_time

@@ -11,6 +11,7 @@ async def start(message: types.Message):
         "Этот бот выдает информацию об аниме по его названию. Выберите действие:",
         reply_markup=get_main_menu_keyboard()
     )
+    await message.delete()
 
 
 @router.callback_query(lambda c: c.data.startswith("search_mode"))

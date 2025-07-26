@@ -2,8 +2,9 @@ from loguru import logger
 import html
 import re
 from datetime import datetime
-
 from api.translate import translate_text
+
+
 def _get_id(data_from_shikimori, data_from_anilist):
     result_id = {
         "shikimori_id": data_from_shikimori.get("id", ""),
@@ -303,15 +304,12 @@ async def format_anime_caption(json_with_anime_info):
     except (ValueError, TypeError):
         anilist_id = None
 
-
     title = json_with_anime_info.get("title").get("russian") or json_with_anime_info.get("title").get(
         "english") or json_with_anime_info.get("title").get("romaji")
-
 
     genres = json_with_anime_info.get("genres").get("genres_shikimori") or json_with_anime_info.get("genres").get(
         "genres_anilist")
     genres = _format_genres(genres)
-
 
     rating = json_with_anime_info.get("rating").get("rating_shikimori") or json_with_anime_info.get("rating").get(
         "rating_anilist")
@@ -320,10 +318,8 @@ async def format_anime_caption(json_with_anime_info):
     else:
         rating = round(rating, 2)
 
-
     release_date = json_with_anime_info.get("release_date").get("release_date_shikimori") or json_with_anime_info.get(
         "release_date").get("release_data_anilist")
-
 
     episode_count = json_with_anime_info.get("episode_count").get("episode_count_anilist") or json_with_anime_info.get(
         "episode_count").get(
@@ -378,18 +374,14 @@ async def format_anime_caption(json_with_anime_info):
 
     formatted_description = _format_description(description, airing_schedule_str)
 
-
     type_info = json_with_anime_info.get("type_info").get("type_shikimori") or json_with_anime_info.get(
         "type_info").get("type_anilist")
-
 
     status = json_with_anime_info.get("status").get("status_shikimori") or json_with_anime_info.get("status").get(
         "status_anilist")
 
-
     cover_image = json_with_anime_info.get("cover_image").get("image_shikimori") or json_with_anime_info.get(
         "cover_image").get("image_anilist")
-
 
     caption_parts = [f"📛 <b>Название:</b> {title}"]
 

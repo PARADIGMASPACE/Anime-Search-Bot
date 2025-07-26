@@ -11,6 +11,12 @@ favorite_router = Router()
 @favorite_router.message(Command("favorites"))
 async def show_favorites(message: types.Message):
     user_id = message.from_user.id
+    last_msg_id = await anime_cache.get_last_bot_message_id(user_id)
+    if last_msg_id:
+        try:
+            await message.bot.delete_message(message.chat.id, last_msg_id)
+        except Exception:
+            pass
     cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorites_list = cached_favorites
@@ -18,18 +24,19 @@ async def show_favorites(message: types.Message):
         favorites_raw = await get_favorite_anime_user(user_id)
         favorites_list = [dict(row) for row in favorites_raw]
         await anime_cache.cache_user_favorites(user_id, favorites_list)
-
     if not favorites_list:
-        await message.answer("У вас нет избранных аниме.")
+        msg = await message.answer("У вас нет избранных аниме.")
+        await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
     else:
         keyboard = get_favorites_list_keyboard(favorites_list)
-        await message.answer(
+        msg = await message.answer(
             f"Ваши избранные аниме ({len(favorites_list)}):\n\n"
             "Нажмите на название для просмотра информации или ❌ для удаления:",
             reply_markup=keyboard
         )
+        await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
+    await message.delete()
 
-# python
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
 async def show_favorites(callback: types.CallbackQuery):
     user_id = callback.from_user.id
