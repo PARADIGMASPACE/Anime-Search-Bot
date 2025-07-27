@@ -1,6 +1,9 @@
 import html
 import re
 from datetime import datetime
+
+from loguru import logger
+
 from api.translate import translate_text
 from utils.i18n import i18n
 
@@ -363,10 +366,13 @@ async def format_anime_caption(json_with_anime_info, lang: str = None):
     anilist_url = cover_data.get("image_anilist", "")
     shikimori_url = cover_data.get("image_shikimori", "")
 
-    if "medium" in anilist_url:
+    is_anilist_bad = "medium" in anilist_url
+    is_shikimori_missing = shikimori_url == "https://shikimori.one/assets/globals/missing_original.jpg"
+
+    if is_anilist_bad and not is_shikimori_missing:
         cover_image = shikimori_url
     else:
-        cover_image = anilist_url or shikimori_url
+        cover_image = anilist_url or (None if is_shikimori_missing else shikimori_url)
 
     caption_parts = []
     if title:

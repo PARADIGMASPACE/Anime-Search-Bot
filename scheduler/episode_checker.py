@@ -54,6 +54,7 @@ async def _send_notification_safe(bot: Bot, user_id: int, message: str) -> None:
     try:
         await bot.send_message(user_id, message)
     except Exception as e:
+        pass
 
 
 async def _notify_users_about_specific_episodes(
@@ -116,7 +117,7 @@ async def _check_anime_for_updates(bot: Bot, anime_id: int, anime_data: Dict) ->
             )
 
     except Exception as e:
-
+        pass
 
 async def check_new_episodes(bot: Bot) -> None:
     lang = "ru"
@@ -145,3 +146,4 @@ async def check_new_episodes(bot: Bot) -> None:
 
 
     except Exception as e:
+        pass
