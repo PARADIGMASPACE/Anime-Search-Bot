@@ -2,7 +2,6 @@ import asyncio
 import time
 
 from typing import List, Dict
-from loguru import logger
 from aiogram import Bot
 from utils.i18n import i18n
 
@@ -16,7 +15,6 @@ async def _fetch_current_episodes_anilist(anilist_id: int) -> int:
         episodes = data.get('data', {}).get('Media', {}).get('episodes')
         return episodes if episodes else 0
     except Exception as e:
-        logger.error(f"Error fetching episodes from AniList for ID {anilist_id}: {e}")
         return 0
 
 
@@ -56,7 +54,6 @@ async def _send_notification_safe(bot: Bot, user_id: int, message: str) -> None:
     try:
         await bot.send_message(user_id, message)
     except Exception as e:
-        logger.warning(f"Failed to send notification to user {user_id}: {e}")
 
 
 async def _notify_users_about_specific_episodes(
@@ -119,7 +116,6 @@ async def _check_anime_for_updates(bot: Bot, anime_id: int, anime_data: Dict) ->
             )
 
     except Exception as e:
-        logger.error(f"Error checking anime {anime_id}: {e}")
 
 
 async def check_new_episodes(bot: Bot) -> None:
@@ -149,4 +145,3 @@ async def check_new_episodes(bot: Bot) -> None:
 
 
     except Exception as e:
-        logger.error(f"Critical error in episode checker: {e}")

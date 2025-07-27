@@ -14,7 +14,6 @@ async def back_to_main_menu(callback: types.CallbackQuery, lang: str = None):
     keyboard = get_main_menu_keyboard()
 
     if callback.message.photo:
-        await callback.message.delete()
         await callback.message.answer(text, reply_markup=keyboard)
     else:
         await callback.message.edit_text(text, reply_markup=keyboard)
@@ -27,7 +26,6 @@ async def back_to_search(callback: types.CallbackQuery, lang: str = None):
     text = i18n.t("main_menu.search_write", lang=lang)
 
     if callback.message.photo:
-        await callback.message.delete()
         await callback.message.answer(text)
     else:
         await callback.message.edit_text(text)
@@ -49,7 +47,6 @@ async def back_to_selection(callback: types.CallbackQuery, lang: str = None):
     keyboard = get_anime_selection_keyboard(results)
 
     if callback.message.photo:
-        await callback.message.delete()
         await callback.message.answer(i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard)
     else:
         await callback.message.edit_text(i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard)

@@ -13,7 +13,6 @@ async def start(message: types.Message):
         i18n.t("main_menu.info", lang=lang),
         reply_markup=get_main_menu_keyboard()
     )
-    await message.delete()
 
 
 @router.callback_query(lambda c: c.data.startswith("search_mode"))

@@ -30,7 +30,6 @@ async def show_favorites(message: types.Message, lang: str = None):
             reply_markup=keyboard
         )
         await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
-    await message.delete()
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
@@ -62,7 +61,6 @@ async def show_favorites(callback: types.CallbackQuery, lang: str = None):
         keyboard = get_favorites_list_keyboard(favorites_list)
 
     if callback.message.photo:
-        await callback.message.delete()
         if keyboard:
             await callback.message.answer(text, reply_markup=keyboard)
         else:

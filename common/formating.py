@@ -1,4 +1,3 @@
-from loguru import logger
 import html
 import re
 from datetime import datetime
@@ -89,7 +88,6 @@ def _get_release_date(data_from_shikimori, data_from_anilist):
             release_date_anilist = f"{y:04d}"
         release_date_anilist = ""
     except Exception as e:
-        logger.error(f"Error formatting release date from Anilist: {e}")
         release_date_anilist = ""
 
     result_release_date = {
@@ -298,7 +296,6 @@ def format_anime_json_info(data_from_shikimori, data_from_anilist):
         "type_info": type_info,
         "status": status
     }
-    logger.debug(result)
     return result
 
 
@@ -362,7 +359,14 @@ async def format_anime_caption(json_with_anime_info, lang: str = None):
 
     status = json_with_anime_info.get("status").get("status_shikimori") or json_with_anime_info.get("status").get(
         "status_anilist")
-    cover_image = json_with_anime_info.get("cover_image").get("image_anilist") or json_with_anime_info.get("cover_image").get("image_shikimori")
+    cover_data = json_with_anime_info.get("cover_image", {})
+    anilist_url = cover_data.get("image_anilist", "")
+    shikimori_url = cover_data.get("image_shikimori", "")
+
+    if "medium" in anilist_url:
+        cover_image = shikimori_url
+    else:
+        cover_image = anilist_url or shikimori_url
 
     caption_parts = []
     if title:

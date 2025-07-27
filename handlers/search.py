@@ -24,9 +24,7 @@ async def handle_anime_view(message: types.Message):
         filtered_anime = cached_search["results"]
     else:
         multiple_results = await get_many_info_about_anime_from_shikimori(anime_name)
-        logger.info(multiple_results)
         filtered_anime = filter_top_anime(multiple_results, query=anime_name, top_n=5)
-        logger.info(filtered_anime)
         await anime_cache.cache_search_results(user_id, anime_name, filtered_anime)
 
     if filtered_anime:
@@ -36,11 +34,9 @@ async def handle_anime_view(message: types.Message):
             i18n.t("search.result_select", lang=lang, query=anime_name),
             reply_markup=keyboard
         )
-        await message.delete()
     else:
         await wait_msg.delete()
         await message.answer(i18n.t("search.not_found", lang=lang, query=anime_name))
-        await message.delete()
 
 
 @search_router.callback_query(lambda c: c.data.startswith("view_anime:"))
