@@ -2,8 +2,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from math import ceil
 from utils.i18n import i18n
 
-def get_main_menu_keyboard():
-    lang = "ru"
+def get_main_menu_keyboard(lang):
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text=i18n.t("keyboard.search", lang=lang), callback_data="search_mode"),
@@ -97,3 +96,11 @@ def get_favorites_list_keyboard(favorites_list, page: int = 1, page_size: int = 
 
     buttons.append([InlineKeyboardButton(text=i18n.t("keyboard.menu", lang=lang), callback_data="back_to_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+def get_language_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text=i18n.t("keyboard.language_english"), callback_data="set_language:en"),
+            InlineKeyboardButton(text=i18n.t("keyboard.language_russian"), callback_data="set_language:ru")
+        ]
+    ])

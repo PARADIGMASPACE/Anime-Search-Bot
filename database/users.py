@@ -1,6 +1,6 @@
 from database.database import get_db_pool
 
-async def upsert_user(telegram_user_id: int, user_language: str = 'en', preferred_language_id: int = None):
+async def upsert_user(telegram_user_id: int, user_language: str, preferred_language_id: int = None):
     pool = await get_db_pool()
     async with pool.acquire() as conn:
         await conn.execute(
