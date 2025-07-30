@@ -2,7 +2,8 @@ import re
 
 from api.anilist import get_info_about_anime_from_anilist_by_mal_id
 from api.shikimori import get_info_about_anime_from_shikimori_by_id
-from common.formating import format_anime_json_info, format_anime_caption
+from common.anime_caption_formater import format_anime_caption
+from common.anime_info_formatter import AnimeInfo
 
 
 def filter_top_anime(results: list[dict], query: str, top_n: int = 5) -> list[dict]:
@@ -71,11 +72,12 @@ def filter_top_anime(results: list[dict], query: str, top_n: int = 5) -> list[di
     return sorted_anime[:top_n]
 
 
-async def get_caption_and_cover_image(anime_id: int):
+async def get_caption_and_cover_image(anime_id: int, lang: str):
     data_from_shikimori = await get_info_about_anime_from_shikimori_by_id(anime_id)
     data_from_anilist = await get_info_about_anime_from_anilist_by_mal_id(data_from_shikimori.get("myanimelist_id", ""))
+    anilist_id = data_from_anilist.get('data', {}).get('Media', {}).get("id")
 
-    formatted_info = format_anime_json_info(data_from_shikimori, data_from_anilist)
-    caption, cover_image, anilist_id = await format_anime_caption(formatted_info)
+    anime_info = AnimeInfo(data_from_shikimori, data_from_anilist)
+    caption, cover_image = await format_anime_caption(anime_info, lang=lang)
 
     return caption, cover_image, anilist_id

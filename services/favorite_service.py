@@ -1,6 +1,6 @@
 from api.anilist import get_info_about_anime_from_anilist_by_mal_id
 from api.shikimori import get_info_about_anime_from_shikimori_by_id
-from common.formating import classify_airing_schedule
+from utils.utils import classify_airing_schedule
 
 
 async def formating_data_to_db(shikimori_id, anilist_id):
@@ -10,7 +10,8 @@ async def formating_data_to_db(shikimori_id, anilist_id):
     data_from_anilist = await get_info_about_anime_from_anilist_by_mal_id(mal_id) if mal_id else {}
     data_from_anilist = data_from_anilist.get('data', {}).get('Media', {})
 
-    romaji_name = data_from_anilist.get("title", {}).get("romaji", "")
+    # romaji_name = data_from_anilist.get("title", {}).get("romaji", "")
+    romaji_name = data_from_shikimori.get("name")
     title_ru = data_from_shikimori.get("russian")
     if not title_ru:
         title_ru = romaji_name

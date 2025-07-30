@@ -1,12 +1,13 @@
 from aiogram import types, Router, F
 from aiogram.filters import Command
 from cache.favorite_cache import favorite_cache
-from cache.search_cache import search_cache
+from cache.anime_cache import anime_cache
+from database.anime import *
+
 from markup.keyboards import get_favorites_list_keyboard, get_anime_menu_keyboard, get_main_menu_keyboard
 from database.favorites import *
 from services.favorite_service import formating_data_to_db
 from utils.i18n import i18n
-
 
 favorite_router = Router()
 
@@ -25,18 +26,16 @@ async def show_favorites(message: types.Message, lang: str = None):
         msg = await message.answer(i18n.t("favorites.empty", lang=lang))
         await favorite_cache.save_last_bot_message_id(user_id, msg.message_id)
     else:
-        keyboard = get_favorites_list_keyboard(favorites_list)
-        msg = await message.answer(
+        keyboard = get_favorites_list_keyboard(favorites_list, lang=lang)
+        await message.answer(
             i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
         )
-        await favorite_cache.save_last_bot_message_id(user_id, msg.message_id)
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
 async def show_favorites(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
-
     cached_favorites = await favorite_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorite_anime = cached_favorites
@@ -59,7 +58,7 @@ async def show_favorites(callback: types.CallbackQuery, lang: str = None):
             for row in favorite_anime
         ]
         text = i18n.t("favorites.list_title", lang=lang, count=len(favorites_list))
-        keyboard = get_favorites_list_keyboard(favorites_list)
+        keyboard = get_favorites_list_keyboard(favorites_list, lang=lang)
 
     if callback.message.photo:
         if keyboard:
@@ -80,7 +79,7 @@ async def add_favorite(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
     shikimori_id = int(callback.data.split(":")[1])
 
-    cached_anime = await search_cache.get_cached_anime(shikimori_id)
+    cached_anime = await anime_cache.get_cached_anime(shikimori_id)
     if not cached_anime:
         await callback.answer(i18n.t("favorites.not_found", lang=lang), show_alert=True)
         return
@@ -95,7 +94,7 @@ async def add_favorite(callback: types.CallbackQuery, lang: str = None):
     await add_favorite_anime_user(anime_id, user_id)
     await favorite_cache.invalidate_user_favorites(user_id)
 
-    keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=True, anime_id=anime_id)
+    keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=True, lang=lang, anime_id=anime_id)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
     await callback.answer(i18n.t("favorites.added", lang=lang))
 
@@ -117,7 +116,7 @@ async def remove_favorite_from_list(callback: types.CallbackQuery, lang: str = N
     if callback.message.photo:
         if shikimori_id is None:
             shikimori_id = 0
-        keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=False, anime_id=anime_id)
+        keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=False, lang=lang, anime_id=anime_id)
         await callback.message.edit_reply_markup(reply_markup=keyboard)
         await callback.answer(i18n.t("favorites.removed", lang=lang))
         return
@@ -128,10 +127,10 @@ async def remove_favorite_from_list(callback: types.CallbackQuery, lang: str = N
     if not favorites_list:
         await callback.message.edit_text(
             i18n.t("favorites.empty_after_remove", lang=lang),
-            reply_markup=get_main_menu_keyboard()
+            reply_markup=get_main_menu_keyboard(lang=lang)
         )
     else:
-        keyboard = get_favorites_list_keyboard(favorites_list)
+        keyboard = get_favorites_list_keyboard(favorites_list, lang=lang)
         await callback.message.edit_text(
             i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
@@ -148,7 +147,7 @@ async def clear_favorites(callback: types.CallbackQuery, lang: str = None):
 
     await callback.message.edit_text(
         i18n.t("favorites.cleared_success", lang=lang),
-        reply_markup=get_main_menu_keyboard()
+        reply_markup=get_main_menu_keyboard(lang=lang)
     )
 
     await callback.answer(i18n.t("favorites.cleared", lang=lang))
@@ -170,7 +169,7 @@ async def favorites_page_callback(callback: types.CallbackQuery, lang: str = Non
     if not favorites_list:
         await callback.message.edit_text(i18n.t("favorites.empty", lang=lang))
     else:
-        keyboard = get_favorites_list_keyboard(favorites_list, page=page)
+        keyboard = get_favorites_list_keyboard(favorites_list, lang=lang, page=page)
         await callback.message.edit_text(
             i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard

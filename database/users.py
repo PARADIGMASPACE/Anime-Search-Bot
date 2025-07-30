@@ -13,7 +13,7 @@ async def upsert_user(telegram_user_id: int, user_language: str):
             telegram_user_id, user_language
         )
 
-async def get_user_language(telegram_user_id: int):
+async def get_user_language_from_db(telegram_user_id: int):
     pool = await get_db_pool()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
