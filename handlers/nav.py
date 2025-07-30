@@ -1,6 +1,6 @@
 from aiogram import types, Router
 from markup.keyboards import get_anime_selection_keyboard
-from cache.anime_cache import anime_cache
+from cache.search_cache import search_cache
 from utils.i18n import i18n
 from markup.keyboards import get_main_menu_keyboard
 
@@ -37,7 +37,7 @@ async def back_to_search(callback: types.CallbackQuery, lang: str = None):
 async def back_to_selection(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
 
-    last_search = await anime_cache.get_user_last_search(user_id)
+    last_search = await search_cache.get_user_last_search(user_id)
     if not last_search:
         await callback.answer(i18n.t("search.no_results", lang=lang), show_alert=True)
         return

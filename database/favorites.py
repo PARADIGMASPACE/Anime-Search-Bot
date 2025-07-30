@@ -113,18 +113,19 @@ async def get_anime_with_users():
                                        a.id_anilist,
                                        a.id_shikimori,
                                        a.title_original,
+                                       a.title_ru,
                                        a.total_episodes_relase,
                                        array_agg(f.user_id) as user_ids
                                 FROM anime a
                                          JOIN favorites f ON a.id = f.anime_id
-                                GROUP BY a.id, a.id_anilist, a.id_shikimori, a.title_original, a.total_episodes_relase
+                                GROUP BY a.id, a.id_anilist, a.id_shikimori, a.title_original, a.title_ru, a.total_episodes_relase
                                 """)
-
     return {
         row['id']: {
             'id_anilist': row['id_anilist'],
             'id_shikimori': row['id_shikimori'],
             'title_original': row['title_original'],
+            'title_ru': row['title_ru'],
             'current_episodes': row['total_episodes_relase'],
             'user_ids': row['user_ids']
         }

@@ -1,6 +1,7 @@
 from aiogram import types, Router, F
 from aiogram.filters import Command
-from cache.anime_cache import anime_cache
+from cache.favorite_cache import favorite_cache
+from cache.search_cache import search_cache
 from markup.keyboards import get_favorites_list_keyboard, get_anime_menu_keyboard, get_main_menu_keyboard
 from database.favorites import *
 from services.favorite_service import formating_data_to_db
@@ -13,36 +14,36 @@ favorite_router = Router()
 @favorite_router.message(Command("favorites"))
 async def show_favorites(message: types.Message, lang: str = None):
     user_id = message.from_user.id
-    cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
+    cached_favorites = await favorite_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorites_list = cached_favorites
     else:
         favorites_raw = await get_favorite_anime_user(user_id)
         favorites_list = [dict(row) for row in favorites_raw]
-        await anime_cache.cache_user_favorites(user_id, favorites_list)
+        await favorite_cache.cache_user_favorites(user_id, favorites_list)
     if not favorites_list:
         msg = await message.answer(i18n.t("favorites.empty", lang=lang))
-        await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
+        await favorite_cache.save_last_bot_message_id(user_id, msg.message_id)
     else:
         keyboard = get_favorites_list_keyboard(favorites_list)
         msg = await message.answer(
             i18n.t("favorites.list_title", lang=lang, count=len(favorites_list)),
             reply_markup=keyboard
         )
-        await anime_cache.save_last_bot_message_id(user_id, msg.message_id)
+        await favorite_cache.save_last_bot_message_id(user_id, msg.message_id)
 
 
 @favorite_router.callback_query(lambda c: c.data.startswith("show_favorites"))
 async def show_favorites(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
 
-    cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
+    cached_favorites = await favorite_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorite_anime = cached_favorites
     else:
         favorite_anime_raw = await get_favorite_anime_user(user_id)
         favorite_anime = [dict(row) for row in favorite_anime_raw]
-        await anime_cache.cache_user_favorites(user_id, favorite_anime)
+        await favorite_cache.cache_user_favorites(user_id, favorite_anime)
 
     if not favorite_anime:
         text = i18n.t("favorites.empty", lang=lang)
@@ -79,7 +80,7 @@ async def add_favorite(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
     shikimori_id = int(callback.data.split(":")[1])
 
-    cached_anime = await anime_cache.get_cached_anime(shikimori_id)
+    cached_anime = await search_cache.get_cached_anime(shikimori_id)
     if not cached_anime:
         await callback.answer(i18n.t("favorites.not_found", lang=lang), show_alert=True)
         return
@@ -92,7 +93,7 @@ async def add_favorite(callback: types.CallbackQuery, lang: str = None):
         anime_id = await upsert_anime(data)
 
     await add_favorite_anime_user(anime_id, user_id)
-    await anime_cache.invalidate_user_favorites(user_id)
+    await favorite_cache.invalidate_user_favorites(user_id)
 
     keyboard = get_anime_menu_keyboard(shikimori_id, is_favorite=True, anime_id=anime_id)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
@@ -111,7 +112,7 @@ async def remove_favorite_from_list(callback: types.CallbackQuery, lang: str = N
         shikimori_id = None
 
     await del_favorite_anime_user(anime_id, user_id)
-    await anime_cache.invalidate_user_favorites(user_id)
+    await favorite_cache.invalidate_user_favorites(user_id)
 
     if callback.message.photo:
         if shikimori_id is None:
@@ -143,7 +144,7 @@ async def clear_favorites(callback: types.CallbackQuery, lang: str = None):
     user_id = callback.from_user.id
 
     await clear_favorites_user(user_id)
-    await anime_cache.invalidate_user_favorites(user_id)
+    await favorite_cache.invalidate_user_favorites(user_id)
 
     await callback.message.edit_text(
         i18n.t("favorites.cleared_success", lang=lang),
@@ -158,13 +159,13 @@ async def favorites_page_callback(callback: types.CallbackQuery, lang: str = Non
     user_id = callback.from_user.id
     page = int(callback.data.split(":")[1])
 
-    cached_favorites = await anime_cache.get_cached_user_favorites(user_id)
+    cached_favorites = await favorite_cache.get_cached_user_favorites(user_id)
     if cached_favorites:
         favorites_list = cached_favorites
     else:
         favorites_raw = await get_favorite_anime_user(user_id)
         favorites_list = [dict(row) for row in favorites_raw]
-        await anime_cache.cache_user_favorites(user_id, favorites_list)
+        await favorite_cache.cache_user_favorites(user_id, favorites_list)
 
     if not favorites_list:
         await callback.message.edit_text(i18n.t("favorites.empty", lang=lang))

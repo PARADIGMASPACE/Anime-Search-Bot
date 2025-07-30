@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     telegram_user_id BIGINT NOT NULL,
     user_language TEXT DEFAULT 'EN',
-    preferred_language_id INTEGER REFERENCES languages(id) ON DELETE SET NULL,
     CONSTRAINT unique_telegram_user_id UNIQUE (telegram_user_id)
 );
 

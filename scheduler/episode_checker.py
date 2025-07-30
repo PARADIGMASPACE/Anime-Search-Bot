@@ -109,11 +109,10 @@ async def _check_anime_for_updates(bot: Bot, anime_id: int, anime_data: Dict) ->
 
             await update_anime_episodes(anime_id, latest_episode)
 
-            # Используем русское название для уведомления
             await _notify_users_about_specific_episodes(
                 bot,
                 anime_data['user_ids'],
-                anime_data['title_original'],
+                anime_data['title_ru'],
                 new_episodes
             )
 
