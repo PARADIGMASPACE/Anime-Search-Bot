@@ -24,4 +24,14 @@ async def get_user_language_from_db(telegram_user_id: int):
         )
     return row["code"] if row else None
 
-
+async def update_user_language(telegram_user_id: int, language: str):
+    pool = await get_db_pool()
+    async with pool.acquire() as conn:
+        await conn.fetchrow(
+            """
+            UPDATE users
+            SET user_language = $1
+            WHERE telegram_user_id = $2
+            """,
+            language, telegram_user_id
+        )

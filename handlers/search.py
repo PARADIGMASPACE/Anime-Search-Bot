@@ -18,6 +18,7 @@ search_router = Router()
 async def handle_anime_view(message: types.Message, lang: str):
     user_id = message.from_user.id
     anime_name = message.text.replace(":", ": ")
+
     wait_msg = await message.answer(i18n.t("search.loading", lang=lang))
     cached_search = await search_cache.get_cached_search_results(user_id, anime_name)
 
@@ -44,13 +45,9 @@ async def handle_anime_view(message: types.Message, lang: str):
 async def handle_anime_view(callback: types.CallbackQuery, lang: str):
     user_id = callback.from_user.id
     data_parts = callback.data.split(":")
-    from_favorites = False
+    from_favorites = len(data_parts) >= 3 and data_parts[1] == "from_favorites"
+    shikimori_id = int(data_parts[2] if from_favorites else data_parts[1])
 
-    if len(data_parts) >= 3 and data_parts[1] == "from_favorites":
-        from_favorites = True
-        shikimori_id = int(data_parts[2])
-    else:
-        shikimori_id = int(data_parts[1])
 
     cached_data = await anime_cache.get_cached_anime(shikimori_id)
     if cached_data:

@@ -10,7 +10,6 @@ async def formating_data_to_db(shikimori_id, anilist_id):
     data_from_anilist = await get_info_about_anime_from_anilist_by_mal_id(mal_id) if mal_id else {}
     data_from_anilist = data_from_anilist.get('data', {}).get('Media', {})
 
-    # romaji_name = data_from_anilist.get("title", {}).get("romaji", "")
     romaji_name = data_from_shikimori.get("name")
     title_ru = data_from_shikimori.get("russian")
     if not title_ru:

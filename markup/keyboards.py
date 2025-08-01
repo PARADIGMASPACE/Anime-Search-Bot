@@ -2,6 +2,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from math import ceil
 from utils.i18n import i18n
 
+
 def get_main_menu_keyboard(lang):
     return InlineKeyboardMarkup(inline_keyboard=[
         [
@@ -9,6 +10,7 @@ def get_main_menu_keyboard(lang):
             InlineKeyboardButton(text=i18n.t("keyboard.favorites", lang=lang), callback_data="show_favorites")
         ]
     ])
+
 
 def get_anime_selection_keyboard(multiple_results, lang):
     type_stickers = {
@@ -39,9 +41,9 @@ def get_anime_selection_keyboard(multiple_results, lang):
 
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
+
 def get_anime_menu_keyboard(shikimori_id: int, is_favorite: bool, lang: str, anime_id: int = None,
                             from_favorites: bool = False) -> InlineKeyboardMarkup:
-
     if is_favorite and anime_id:
         action = "remove_fav"
         action_id = f"{anime_id}:{shikimori_id}"
@@ -90,12 +92,12 @@ def get_favorites_list_keyboard(favorites_list, lang: str, page: int = 1, page_s
     if page > 1:
         nav_buttons.append(InlineKeyboardButton(
             text=i18n.t("keyboard.back", lang=lang),
-            callback_data=f"favorites_page:{page-1}"
+            callback_data=f"favorites_page:{page - 1}"
         ))
     if page < total_pages:
         nav_buttons.append(InlineKeyboardButton(
             text=i18n.t("keyboard.next", lang=lang),
-            callback_data=f"favorites_page:{page+1}"
+            callback_data=f"favorites_page:{page + 1}"
         ))
     if nav_buttons:
         buttons.append(nav_buttons)
@@ -113,10 +115,19 @@ def get_favorites_list_keyboard(favorites_list, lang: str, page: int = 1, page_s
 
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
+
 def get_language_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text=i18n.t("keyboard.language_english"), callback_data="set_language:en"),
             InlineKeyboardButton(text=i18n.t("keyboard.language_russian"), callback_data="set_language:ru")
+        ]
+    ])
+
+def update_language_keyboard(lang):
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text=i18n.t("keyboard.language_english", lang=lang), callback_data="update_language:en"),
+            InlineKeyboardButton(text=i18n.t("keyboard.language_russian", lang=lang), callback_data="update_language:ru")
         ]
     ])

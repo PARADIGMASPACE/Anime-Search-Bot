@@ -63,6 +63,9 @@
   "episode_checker.no_anime": "🚫 No anime to check.",
   "episode_checker.checking": "🔄 Checking {count} anime...",
   "episode_checker.completed": "✅ Check completed.",
+  "keyboard.update_language": "\uD83D\uDD04 Please select a new language / Пожалуйста, выберете новый язык",
+  "keyboard.warning_user": "\uD83D\uDEAB You cannot select the same language again!",
+  "keyboard.successful_update": "✅ The language has been successfully changed.",
   "keyboard.language_select": "🌏 Please select your language / Пожалуйста, выберите ваш язык:",
   "keyboard.language_english": "🇬🇧 English",
   "keyboard.language_russian": "🇷🇺 Русский"
