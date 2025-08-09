@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+from loguru import logger
 
 _ANILIST_QUERY = '''
     query ($id: Int) {
@@ -86,6 +87,7 @@ async def _fetch_anilist(variables: dict, query):
                         return {}
                     return await resp.json()
             except Exception as e:
+                logger.warning(f"Request failed: {resp.status} — {variables} — {e}")
                 if attempt == max_retries - 1:
                     return {}
                 await asyncio.sleep(1)

@@ -13,16 +13,19 @@ class UserCache:
         try:
             key = self._get_user_language_key(user_id)
             await redis_client.set(key, language, expire=self.user_tll)
+            logger.info(f"User language saved {key}")
         except Exception as e:
-            logger.error(f"Ошибка кеширования языка {user_id}:{language}")
+            logger.error(f"Language caching error {user_id}:{language}")
 
     async def get_user_language(self, user_id: int) -> str | None:
         try:
             key = self._get_user_language_key(user_id)
             data = await redis_client.get(key)
+            logger.info(f"User language received {key}")
             return data
         except Exception as e:
-            logger.error(f"Ошибка получения языка {user_id} из кеша: {e}")
-        return None
+            logger.error(f"Error retrieving language {user_id} from cache: {e}")
+            return None
+
 
 user_cache = UserCache()

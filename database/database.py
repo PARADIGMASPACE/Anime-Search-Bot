@@ -3,12 +3,15 @@ import asyncio
 import logging
 import os
 
+from loguru import logger
+
 _db_pool = None
 
 
 async def get_db_pool():
     global _db_pool
     if _db_pool is None:
+        logger.info("Creating new database connection pool")
         max_retries = 3
         retry_delay = 2
 
@@ -24,6 +27,7 @@ async def get_db_pool():
                     max_size=5,
                     command_timeout=60
                 )
+                logger.info(f"Database pool created successfully | attempt: {attempt + 1}")
                 break
             except Exception as e:
                 if attempt == max_retries - 1:
@@ -31,5 +35,7 @@ async def get_db_pool():
                     raise
                 logging.warning(f"Database connection attempt {attempt + 1} failed: {e}")
                 await asyncio.sleep(retry_delay * (attempt + 1))
+    else:
+        logger.debug("Using existing database pool")
 
     return _db_pool

@@ -19,9 +19,9 @@ class RedisClient:
                 decode_responses=True
             )
             await self.redis.ping()
-            logger.info(f"Подключен к Redis на {self.host}:{self.port}")
+            logger.info(f"Error Redis on {self.host}:{self.port}")
         except Exception as e:
-            logger.error(f"Ошибка подключения к Redis: {e}")
+            logger.error(f"Error connecting to Redis: {e}")
             raise
 
     async def disconnect(self):

@@ -1,4 +1,5 @@
 from database.database import get_db_pool
+from loguru import logger
 
 async def upsert_anime(anime_data: dict):
     pool = await get_db_pool()
@@ -6,13 +7,13 @@ async def upsert_anime(anime_data: dict):
         row = await conn.fetchrow(
             """
             INSERT INTO anime (title_original, title_ru, id_anilist, id_shikimori, total_episodes_relase)
-            VALUES ($1, $2, $3, $4, $5) ON CONFLICT (id_shikimori) DO
-            UPDATE SET
+            VALUES ($1, $2, $3, $4, $5)
+            ON CONFLICT (id_shikimori) DO UPDATE SET
                 title_original = EXCLUDED.title_original,
                 title_ru = EXCLUDED.title_ru,
                 id_anilist = EXCLUDED.id_anilist,
                 total_episodes_relase = EXCLUDED.total_episodes_relase
-            RETURNING id
+            RETURNING id, title_original
             """,
             anime_data["title_original"],
             anime_data["title_ru"],
@@ -20,7 +21,8 @@ async def upsert_anime(anime_data: dict):
             anime_data["id_shikimori"],
             anime_data["total_episodes_relase"]
         )
-    return row["id"]
+        logger.info(f"Anime saved in database {row['id']} | {row['title_original']}")
+        return row['id']
 
 
 async def existing_anime(shikimori_id: int, anilist_id: int) -> int:
@@ -34,17 +36,6 @@ async def existing_anime(shikimori_id: int, anilist_id: int) -> int:
         return row["id"]
     return False
 
-
-async def add_favorite_anime_user(anime_id: int, user_id: int):
-    pool = await get_db_pool()
-    async with pool.acquire() as conn:
-        await conn.execute(
-            """
-            INSERT INTO favorites (user_id, anime_id)
-            VALUES ($1, $2) ON CONFLICT (user_id, anime_id) DO NOTHING
-            """,
-            user_id, anime_id
-        )
 
 async def update_anime_episodes(anime_id: int, new_episodes: int) -> None:
     pool = await get_db_pool()

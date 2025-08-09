@@ -33,6 +33,7 @@
   "favorites.empty": "💔 You have no favorite anime.",
   "favorites.list_title": "🌟 Your favorite anime ({count}):\n\nClick the title to view info or ❌ to remove:",
   "favorites.removed": "🗑 Removed from favorites",
+  "favorites.error_added": "\uD83C\uDFB4 This anime is already in my favorites!",
   "favorites.cleared": "🧹 Favorites list cleared",
   "favorites.cleared_success": "✅ Your favorites list has been cleared! Choose an action:",
   "favorites.added": "✨ Added to favorites",
@@ -68,5 +69,6 @@
   "keyboard.successful_update": "✅ The language has been successfully changed.",
   "keyboard.language_select": "🌏 Please select your language / Пожалуйста, выберите ваш язык:",
   "keyboard.language_english": "🇬🇧 English",
-  "keyboard.language_russian": "🇷🇺 Русский"
+  "keyboard.language_russian": "🇷🇺 Русский",
+  "antiflood_middleware.alert": "Wait a second. Don't flood!"
 }

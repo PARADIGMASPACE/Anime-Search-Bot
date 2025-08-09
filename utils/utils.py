@@ -2,6 +2,8 @@ from datetime import datetime
 import html
 import re
 
+from loguru import logger
+
 
 def classify_airing_schedule(schedule: list):
     now = datetime.now().timestamp()
@@ -46,7 +48,7 @@ def _format_description(description, schedule_text):
     if len_description > max_desc_len:
         description = description[:max_desc_len] + "..."
     description = description.replace('<br>', '\n')
-
+    logger.debug(f"<blockquote>{description}</blockquote>")
     return f"<blockquote>{description}</blockquote>"
 
 

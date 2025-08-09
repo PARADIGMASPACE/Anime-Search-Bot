@@ -25,13 +25,13 @@ def start_scheduler(bot: Bot):
 
     scheduler.start()
 
-#
+
 # def start_scheduler(bot: Bot):
 #     scheduler = AsyncIOScheduler()
 #     scheduler.add_job(
 #         check_new_episodes,
 #         trigger="interval",
-#         seconds=10,
+#         seconds=15,
 #         args=[bot],
 #         max_instances=10
 #     )

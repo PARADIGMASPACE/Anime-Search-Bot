@@ -8,3 +8,4 @@ APScheduler==3.11.0
 loguru
 requests==2.32.4
 httpx
+bleach

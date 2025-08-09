@@ -1,6 +1,8 @@
 import html
 from datetime import datetime
 
+from loguru import logger
+
 from api.translate import translate_text
 from common.anime_info_formatter import AnimeInfo
 from utils.i18n import i18n
@@ -8,6 +10,7 @@ from utils.utils import _format_description, get_cover_image, strip_html_tags, f
 
 
 async def format_anime_caption(anime_info: AnimeInfo, lang: str):
+    logger.info(anime_info.__dict__)
     title_data = anime_info.title()
     type_data = anime_info.type()
     status_data = anime_info.status()
@@ -40,7 +43,7 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         genres = format_genres(genres)
 
         description = description_data.get("desc_shikimori")
-        description = _format_description(description, airing_schedule_str)
+        description = strip_html_tags(description)
 
         if not description:
             description = description_data.get("desc_anilist")
@@ -65,6 +68,13 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
     release_date = release_date_data.get("release_date_anilist") or release_date_data.get("release_date_shikimori")
     description = _format_description(description, airing_schedule_str)
     cover_image = get_cover_image(cover_image_data)
+
+    raw_data_db = {
+        "total_episodes_relase": episode_count or 0,
+        "title_ru": title_data.get("russian") or "",
+        "title_original": title_data.get("romaji") or title_data.get(
+            "english") or f"Unknown_{anime_info.ids.get('shikimori_id', 0)}"
+    }
 
     caption_parts = []
     if title:
@@ -95,5 +105,4 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         caption_parts.append(description)
 
     caption = "\n".join(caption_parts)
-
-    return caption, cover_image
+    return caption, cover_image, raw_data_db
