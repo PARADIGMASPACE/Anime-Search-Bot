@@ -10,7 +10,8 @@ async def add_favorite_anime_user(anime_id: int, user_id: int):
             INSERT INTO favorites (user_id, anime_id)
             VALUES ($1, $2) ON CONFLICT (user_id, anime_id) DO NOTHING
             """,
-            user_id, anime_id
+            user_id,
+            anime_id,
         )
     logger.info(f"The anime {anime_id} was saved to favorites list for user {user_id}")
 
@@ -29,7 +30,7 @@ async def get_favorite_anime_user(user_id: int):
                      JOIN anime a ON f.anime_id = a.id
             WHERE f.user_id = $1
             """,
-            user_id
+            user_id,
         )
     logger.info(f"Retrieved {len(favorites)} favorites for user {user_id}")
     return favorites
@@ -40,7 +41,8 @@ async def del_favorite_anime_user(anime_id: int, user_id: int):
     async with pool.acquire() as conn:
         await conn.execute(
             "DELETE FROM favorites WHERE anime_id = $1 AND user_id = $2",
-            anime_id, user_id
+            anime_id,
+            user_id,
         )
     logger.info(f"Removed favorite anime_id={anime_id} for user {user_id}")
 
@@ -48,10 +50,7 @@ async def del_favorite_anime_user(anime_id: int, user_id: int):
 async def clear_favorites_user(user_id: int):
     pool = await get_db_pool()
     async with pool.acquire() as conn:
-        await conn.execute(
-            "DELETE FROM favorites WHERE user_id = $1",
-            user_id
-        )
+        await conn.execute("DELETE FROM favorites WHERE user_id = $1", user_id)
     logger.info(f"Cleared all favorites for user {user_id}")
 
 
@@ -60,9 +59,11 @@ async def is_favorite_anime_user(anime_id: int, user_id: int):
     async with pool.acquire() as conn:
         existing = await conn.fetchrow(
             "SELECT 1 FROM favorites WHERE anime_id = $1 AND user_id = $2",
-            anime_id, user_id
+            anime_id,
+            user_id,
         )
     return existing is not None
+
 
 async def get_anime_with_users():
     pool = await get_db_pool()
@@ -85,14 +86,14 @@ async def get_anime_with_users():
     logger.info(f"Retrieved {len(rows)} anime with associated users")
 
     return {
-        row['id']: {
-            'id_anilist': row['id_anilist'],
-            'id_shikimori': row['id_shikimori'],
-            'title_original': row['title_original'],
-            'title_ru': row['title_ru'],
-            'current_episodes': row['total_episodes_relase'],
-            'user_ids': row['user_ids'],
-            'user_languages': row['user_languages']
+        row["id"]: {
+            "id_anilist": row["id_anilist"],
+            "id_shikimori": row["id_shikimori"],
+            "title_original": row["title_original"],
+            "title_ru": row["title_ru"],
+            "current_episodes": row["total_episodes_relase"],
+            "user_ids": row["user_ids"],
+            "user_languages": row["user_languages"],
         }
         for row in rows
     }

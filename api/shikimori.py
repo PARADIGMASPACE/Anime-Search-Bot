@@ -4,13 +4,15 @@ from loguru import logger
 from utils.utils import log_api_response
 
 
-async def fetch_json_with_retries(url: str, max_retries: int = 3, backoff_base: int = 2):
+async def fetch_json_with_retries(
+    url: str, max_retries: int = 3, backoff_base: int = 2
+):
     for attempt in range(max_retries):
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url) as resp:
                     if resp.status == 429:
-                        await asyncio.sleep(backoff_base ** attempt)
+                        await asyncio.sleep(backoff_base**attempt)
                         continue
                     if 200 <= resp.status < 300:
                         return await resp.json()

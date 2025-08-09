@@ -3,7 +3,7 @@ import aiohttp
 from loguru import logger
 from utils.utils import log_api_response
 
-_ANILIST_QUERY = '''
+_ANILIST_QUERY = """
     query ($id: Int) {
       Media(id: $id, type: ANIME) {
         id
@@ -35,9 +35,9 @@ _ANILIST_QUERY = '''
         }
       }
     }
-'''
+"""
 
-_ANILIST_QUERY_BY_MAL_ID = '''
+_ANILIST_QUERY_BY_MAL_ID = """
     query ($idMal: Int) {
       Media(idMal: $idMal, type: ANIME) {
         id
@@ -69,7 +69,7 @@ _ANILIST_QUERY_BY_MAL_ID = '''
         }
       }
     }
-'''
+"""
 
 
 async def _fetch_anilist(variables: dict, query):
@@ -79,10 +79,12 @@ async def _fetch_anilist(variables: dict, query):
     async with aiohttp.ClientSession() as session:
         for attempt in range(max_retries):
             try:
-                async with session.post("https://graphql.anilist.co",
-                                        json={"query": query, "variables": variables}) as resp:
+                async with session.post(
+                    "https://graphql.anilist.co",
+                    json={"query": query, "variables": variables},
+                ) as resp:
                     if resp.status == 429:
-                        await asyncio.sleep(2 ** attempt)
+                        await asyncio.sleep(2**attempt)
                         continue
                     elif resp.status != 200:
                         return {}

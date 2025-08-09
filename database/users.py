@@ -12,7 +12,8 @@ async def upsert_user(telegram_user_id: int, user_language: str):
             UPDATE SET
                 user_language = EXCLUDED.user_language
             """,
-            telegram_user_id, user_language
+            telegram_user_id,
+            user_language,
         )
     logger.info(f"User saved to database {telegram_user_id}")
 
@@ -26,7 +27,7 @@ async def get_user_language_from_db(telegram_user_id: int):
             FROM users
             WHERE telegram_user_id = $1
             """,
-            telegram_user_id
+            telegram_user_id,
         )
     return row["code"] if row else None
 
@@ -40,6 +41,7 @@ async def update_user_language(telegram_user_id: int, language: str):
             SET user_language = $1
             WHERE telegram_user_id = $2
             """,
-            language, telegram_user_id
+            language,
+            telegram_user_id,
         )
     logger.info(f"User {telegram_user_id} change language to {language}")

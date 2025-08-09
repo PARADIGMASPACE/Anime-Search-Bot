@@ -1,7 +1,6 @@
 import asyncio
 import os
 
-from aiogram.types import BotCommandScopeDefault
 from aiogram import Bot, Dispatcher, types
 from dotenv import find_dotenv, load_dotenv
 from loguru import logger
@@ -41,8 +40,12 @@ async def main():
         await redis_client.connect()
         logger.info("Redis connection established")
 
-        await bot.set_my_commands(commands_ru, scope=types.BotCommandScopeDefault(), language_code="ru")
-        await bot.set_my_commands(commands_en, scope=types.BotCommandScopeDefault(), language_code="en")
+        await bot.set_my_commands(
+            commands_ru, scope=types.BotCommandScopeDefault(), language_code="ru"
+        )
+        await bot.set_my_commands(
+            commands_en, scope=types.BotCommandScopeDefault(), language_code="en"
+        )
         logger.info("Bot commands set for ru/en languages")
 
         await bot.delete_webhook(drop_pending_updates=True)

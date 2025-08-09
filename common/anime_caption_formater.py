@@ -6,8 +6,15 @@ from loguru import logger
 from api.translate import translate_text
 from common.anime_info_formatter import AnimeInfo
 from utils.i18n import i18n
-from utils.utils import _format_description, get_cover_image, strip_html_tags, format_genres, format_status, \
-    format_type, log_api_response
+from utils.utils import (
+    _format_description,
+    get_cover_image,
+    strip_html_tags,
+    format_genres,
+    format_status,
+    format_type,
+    log_api_response,
+)
 
 
 async def format_anime_caption(anime_info: AnimeInfo, lang: str):
@@ -25,8 +32,10 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         res = []
         episode = "Эпизод" if lang == "ru" else "Episode"
         for ep in episodes:
-            dt = datetime.fromtimestamp(ep.get('airingAt'))
-            res.append(f"{episode} {ep.get('episode')}: {dt.strftime('%Y-%m-%d %H:%M')}")
+            dt = datetime.fromtimestamp(ep.get("airingAt"))
+            res.append(
+                f"{episode} {ep.get('episode')}: {dt.strftime('%Y-%m-%d %H:%M')}"
+            )
         return "\n".join(res)
 
     airing_schedule_str = format_episodes(airing_schedule)
@@ -65,16 +74,21 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
     cover_image_data = anime_info.cover_image()
 
     rating = rating_data.get("rating_anilist") or rating_data.get("rating_shikimori")
-    episode_count = episode_count_data.get("episode_count_anilist") or episode_count_data.get("episode_count_shikimori")
-    release_date = release_date_data.get("release_date_anilist") or release_date_data.get("release_date_shikimori")
+    episode_count = episode_count_data.get(
+        "episode_count_anilist"
+    ) or episode_count_data.get("episode_count_shikimori")
+    release_date = release_date_data.get(
+        "release_date_anilist"
+    ) or release_date_data.get("release_date_shikimori")
     description = _format_description(description, airing_schedule_str)
     cover_image = get_cover_image(cover_image_data)
 
     raw_data_db = {
         "total_episodes_relase": episode_count or 0,
         "title_ru": title_data.get("russian") or "",
-        "title_original": title_data.get("romaji") or title_data.get(
-            "english") or f"Unknown_{anime_info.ids.get('shikimori_id', 0)}"
+        "title_original": title_data.get("romaji")
+        or title_data.get("english")
+        or f"Unknown_{anime_info.ids.get('shikimori_id', 0)}",
     }
 
     caption_parts = []
@@ -88,19 +102,27 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         caption_parts.append(f"ℹ<b>{i18n.t('anime.status', lang=lang)}:</b> {status_}")
 
     if genres:
-        caption_parts.append(f"<b>{i18n.t('anime.genres', lang=lang)}:</b> {', '.join(map(html.escape, genres))}")
+        caption_parts.append(
+            f"<b>{i18n.t('anime.genres', lang=lang)}:</b> {', '.join(map(html.escape, genres))}"
+        )
 
     if rating is not None and rating > 0:
         caption_parts.append(f"<b>{i18n.t('anime.rating', lang=lang)}:</b> {rating}")
 
     if episode_count is not None and episode_count > 0:
-        caption_parts.append(f"<b>{i18n.t('anime.episodes', lang=lang)}:</b> {episode_count}")
+        caption_parts.append(
+            f"<b>{i18n.t('anime.episodes', lang=lang)}:</b> {episode_count}"
+        )
 
     if release_date:
-        caption_parts.append(f"<b>{i18n.t('anime.release_date', lang=lang)}:</b> {release_date}")
+        caption_parts.append(
+            f"<b>{i18n.t('anime.release_date', lang=lang)}:</b> {release_date}"
+        )
 
     if airing_schedule:
-        caption_parts.append(f"<b>{i18n.t('anime.upcoming_episodes', lang=lang)}:</b>\n{airing_schedule_str}")
+        caption_parts.append(
+            f"<b>{i18n.t('anime.upcoming_episodes', lang=lang)}:</b>\n{airing_schedule_str}"
+        )
 
     if description:
         caption_parts.append(description)
@@ -118,7 +140,7 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         "description": description,
         "cover_image": cover_image,
         "raw_data_db": raw_data_db,
-        "anime_info_ids": getattr(anime_info, 'ids', {})
+        "anime_info_ids": getattr(anime_info, "ids", {}),
     }
     log_api_response("caption_debug", debug_info)
     return caption, cover_image, raw_data_db

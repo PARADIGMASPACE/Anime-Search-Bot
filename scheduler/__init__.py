@@ -11,7 +11,7 @@ def start_scheduler(bot: Bot):
         hour=6,
         minute=0,
         args=[bot],
-        max_instances=10
+        max_instances=10,
     )
 
     scheduler.add_job(
@@ -20,7 +20,7 @@ def start_scheduler(bot: Bot):
         hour=18,
         minute=0,
         args=[bot],
-        max_instances=10
+        max_instances=10,
     )
 
     scheduler.start()

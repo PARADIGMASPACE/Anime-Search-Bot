@@ -23,14 +23,16 @@ class AntiFloodMiddleware(BaseMiddleware):
                     await user_cache.user_language(user_id, lang)
             return lang or "en"
         except Exception as e:
-            logger.error(f"Failed to get user language | user_id: {user_id} | error: {e}")
+            logger.error(
+                f"Failed to get user language | user_id: {user_id} | error: {e}"
+            )
             return "en"
 
     async def __call__(
-            self,
-            handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
-            event: TelegramObject,
-            data: Dict[str, Any]
+        self,
+        handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
+        event: TelegramObject,
+        data: Dict[str, Any],
     ) -> Any:
         user_id = None
 
@@ -45,10 +47,14 @@ class AntiFloodMiddleware(BaseMiddleware):
 
             if current_time - last_request_time < self.rate_limit:
                 lang = await self.get_user_language(user_id)
-                logger.warning(f"Rate limit triggered | user_id: {user_id} | lang: {lang}")
+                logger.warning(
+                    f"Rate limit triggered | user_id: {user_id} | lang: {lang}"
+                )
 
                 if isinstance(event, CallbackQuery):
-                    await event.answer(i18n.t("antiflood_middleware.alert", lang=lang), show_alert=True)
+                    await event.answer(
+                        i18n.t("antiflood_middleware.alert", lang=lang), show_alert=True
+                    )
                 elif isinstance(event, Message):
                     await event.answer(i18n.t("antiflood_middleware.alert", lang=lang))
                     try:
@@ -60,5 +66,7 @@ class AntiFloodMiddleware(BaseMiddleware):
             self.user_timeouts[user_id] = current_time
             return await handler(event, data)
         except Exception as e:
-            logger.error(f"Antiflood middleware failed | user_id: {user_id} | error: {e}")
+            logger.error(
+                f"Antiflood middleware failed | user_id: {user_id} | error: {e}"
+            )
             return await handler(event, data)

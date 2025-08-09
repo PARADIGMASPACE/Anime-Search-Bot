@@ -14,7 +14,7 @@ async def formating_data_to_db(shikimori_id, anilist_id, lang: str = "en"):
             "title_ru": title_ru,
             "id_anilist": cached_anime.get("anilist_id", anilist_id),
             "id_shikimori": shikimori_id,
-            "total_episodes_relase": episodes_count
+            "total_episodes_relase": episodes_count,
         }
         return anime_data
     return None

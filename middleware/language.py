@@ -10,10 +10,10 @@ from database.users import get_user_language_from_db
 
 class LanguageMiddleware(BaseMiddleware):
     async def __call__(
-            self,
-            handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
-            event: TelegramObject,
-            data: Dict[str, Any]
+        self,
+        handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
+        event: TelegramObject,
+        data: Dict[str, Any],
     ) -> Any:
         user_id = event.from_user.id
 
@@ -25,11 +25,15 @@ class LanguageMiddleware(BaseMiddleware):
                 if lang:
                     await user_cache.user_language(user_id, lang)
             else:
-                logger.debug(f"Language loaded from cache | user_id: {user_id} | lang: {lang}")
+                logger.debug(
+                    f"Language loaded from cache | user_id: {user_id} | lang: {lang}"
+                )
 
             data["lang"] = lang
             return await handler(event, data)
         except Exception as e:
-            logger.error(f"Language middleware failed | user_id: {user_id} | error: {e}")
+            logger.error(
+                f"Language middleware failed | user_id: {user_id} | error: {e}"
+            )
             data["lang"] = "en"
             return await handler(event, data)

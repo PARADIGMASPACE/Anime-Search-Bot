@@ -24,55 +24,72 @@ async def _send_notification_safe(bot: Bot, user_id: int, message: str) -> None:
 
 
 async def _notify_users_about_specific_episodes(
-        bot: Bot,
-        user_ids: List[int],
-        user_languages: List[str],
-        anime_titles: Dict[str, str],
-        new_episodes: List[int]
+    bot: Bot,
+    user_ids: List[int],
+    user_languages: List[str],
+    anime_titles: Dict[str, str],
+    new_episodes: List[int],
 ) -> None:
-    logger.info(f"Notifying users {user_ids} about new episodes {new_episodes} for anime {anime_titles}")
+    logger.info(
+        f"Notifying users {user_ids} about new episodes {new_episodes} for anime {anime_titles}"
+    )
     for user_id, lang in zip(user_ids, user_languages):
-        if lang.lower() == 'ru':
-            title = anime_titles.get('ru', anime_titles.get('original', ''))
+        if lang.lower() == "ru":
+            title = anime_titles.get("ru", anime_titles.get("original", ""))
         else:
-            title = anime_titles.get('original', anime_titles.get('ru', ''))
+            title = anime_titles.get("original", anime_titles.get("ru", ""))
         if len(new_episodes) == 1:
-            message = i18n.t("episode_checker.notify_one", lang=lang, title=title, number=new_episodes[0])
+            message = i18n.t(
+                "episode_checker.notify_one",
+                lang=lang,
+                title=title,
+                number=new_episodes[0],
+            )
         else:
             episodes_str = ", ".join(map(str, new_episodes))
-            message = i18n.t("episode_checker.notify_many", lang=lang, title=title, numbers=episodes_str)
+            message = i18n.t(
+                "episode_checker.notify_many",
+                lang=lang,
+                title=title,
+                numbers=episodes_str,
+            )
         await _send_notification_safe(bot, user_id, message)
 
 
-async def _check_anime_for_updates_cached(bot: Bot, anime_id: int, anime_data: Dict, media: Dict,
-                                          updated_episodes: Dict) -> None:
-    logger.info(f"Checking anime {anime_id} for updates. Current episodes: {anime_data['current_episodes']}")
+async def _check_anime_for_updates_cached(
+    bot: Bot, anime_id: int, anime_data: Dict, media: Dict, updated_episodes: Dict
+) -> None:
+    logger.info(
+        f"Checking anime {anime_id} for updates. Current episodes: {anime_data['current_episodes']}"
+    )
 
-    current_episodes = updated_episodes.get(anime_id, anime_data['current_episodes'])
+    current_episodes = updated_episodes.get(anime_id, anime_data["current_episodes"])
     current_timestamp = int(time.time())
     current_available = 0
 
     # Проверяем nextAiringEpisode - если есть, то текущих эпизодов на 1 меньше
-    next_airing = media.get('nextAiringEpisode')
+    next_airing = media.get("nextAiringEpisode")
     if next_airing:
-        current_available = next_airing['episode'] - 1
+        current_available = next_airing["episode"] - 1
     else:
         # Проверяем airingSchedule - только уже вышедшие эпизоды
-        airing_schedule = media.get('airingSchedule', {}).get('nodes', [])
+        airing_schedule = media.get("airingSchedule", {}).get("nodes", [])
         if airing_schedule:
             for episode_info in airing_schedule:
-                if episode_info['airingAt'] <= current_timestamp:
-                    current_available = max(current_available, episode_info['episode'])
+                if episode_info["airingAt"] <= current_timestamp:
+                    current_available = max(current_available, episode_info["episode"])
         else:
             # Если нет расписания, используем общее количество эпизодов (для завершенных аниме)
-            total_episodes = media.get('episodes')
+            total_episodes = media.get("episodes")
             if total_episodes:
                 current_available = total_episodes
             else:
                 logger.warning(f"No episode info found for anime {anime_id}")
                 return
 
-    logger.info(f"Anime {anime_id}: current_episodes={current_episodes}, current_available={current_available}")
+    logger.info(
+        f"Anime {anime_id}: current_episodes={current_episodes}, current_available={current_available}"
+    )
 
     if current_available > current_episodes:
         new_episodes = list(range(current_episodes + 1, current_available + 1))
@@ -84,13 +101,10 @@ async def _check_anime_for_updates_cached(bot: Bot, anime_id: int, anime_data: D
 
         await _notify_users_about_specific_episodes(
             bot,
-            anime_data['user_ids'],
-            anime_data['user_languages'],
-            {
-                'ru': anime_data['title_ru'],
-                'original': anime_data['title_original']
-            },
-            new_episodes
+            anime_data["user_ids"],
+            anime_data["user_languages"],
+            {"ru": anime_data["title_ru"], "original": anime_data["title_original"]},
+            new_episodes,
         )
     else:
         logger.info(f"No new episodes for anime {anime_id}")
@@ -110,12 +124,13 @@ async def check_new_episodes(bot: Bot) -> None:
     updated_episodes = {}
 
     for i in range(0, len(anime_items), batch_size):
-        batch = anime_items[i:i + batch_size]
+        batch = anime_items[i : i + batch_size]
         logger.info(f"Processing batch {i // batch_size + 1}: {batch}")
 
         fetch_tasks = [
-            get_info_about_anime_from_anilist_by_id(anime_data['id_anilist'])
-            if anime_data['id_anilist'] else None
+            get_info_about_anime_from_anilist_by_id(anime_data["id_anilist"])
+            if anime_data["id_anilist"]
+            else None
             for _, anime_data in batch
         ]
 
@@ -126,9 +141,13 @@ async def check_new_episodes(bot: Bot) -> None:
             if isinstance(result, Exception):
                 logger.error(f"Error fetching info for anime {anime_id}: {result}")
                 continue
-            if isinstance(result, dict) and 'data' in result:
-                media = result['data']['Media']
-                tasks.append(_check_anime_for_updates_cached(bot, anime_id, anime_data, media, updated_episodes))
+            if isinstance(result, dict) and "data" in result:
+                media = result["data"]["Media"]
+                tasks.append(
+                    _check_anime_for_updates_cached(
+                        bot, anime_id, anime_data, media, updated_episodes
+                    )
+                )
             else:
                 logger.warning(f"No valid data for anime {anime_id}")
 

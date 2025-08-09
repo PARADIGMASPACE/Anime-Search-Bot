@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+
 class I18n:
     def __init__(self, locale_dir: str, default_lang: str = "ru"):
         self.locale_dir = Path(locale_dir)
@@ -16,12 +17,15 @@ class I18n:
 
     def t(self, key: str, lang: str = None, **kwargs) -> str:
         lang = lang or self.default_lang
-        template = self.translations.get(lang, {}).get(key) or self.translations[self.default_lang].get(key, key)
+        template = self.translations.get(lang, {}).get(key) or self.translations[
+            self.default_lang
+        ].get(key, key)
         if kwargs:
             try:
                 return template.format(**kwargs)
             except KeyError as e:
                 return f"Missing placeholder: {e} in key: {key}"
         return template
+
 
 i18n = I18n("locales")

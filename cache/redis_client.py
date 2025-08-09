@@ -8,15 +8,13 @@ from loguru import logger
 class RedisClient:
     def __init__(self):
         self.redis: Optional[redis.Redis] = None
-        self.host = os.getenv('REDIS_HOST', 'localhost')
-        self.port = int(os.getenv('REDIS_PORT', '6379'))
+        self.host = os.getenv("REDIS_HOST", "localhost")
+        self.port = int(os.getenv("REDIS_PORT", "6379"))
 
     async def connect(self):
         try:
             self.redis = redis.Redis(
-                host=self.host,
-                port=self.port,
-                decode_responses=True
+                host=self.host, port=self.port, decode_responses=True
             )
             await self.redis.ping()
             logger.info(f"Error Redis on {self.host}:{self.port}")

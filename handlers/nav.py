@@ -9,7 +9,6 @@ navigation_router = Router()
 
 @navigation_router.callback_query(lambda c: c.data.startswith("back_to_menu"))
 async def back_to_main_menu(callback: types.CallbackQuery, lang: str = None):
-
     text = i18n.t("main_menu.info", lang=lang)
     keyboard = get_main_menu_keyboard(lang=lang)
 
@@ -42,13 +41,17 @@ async def back_to_selection(callback: types.CallbackQuery, lang: str = None):
         await callback.answer(i18n.t("search.no_results", lang=lang), show_alert=True)
         return
 
-    query = last_search['query']
-    results = last_search['results']
+    query = last_search["query"]
+    results = last_search["results"]
     keyboard = get_anime_selection_keyboard(results, lang=lang)
 
     if callback.message.photo:
-        await callback.message.answer(i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard)
+        await callback.message.answer(
+            i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard
+        )
     else:
-        await callback.message.edit_text(i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard)
+        await callback.message.edit_text(
+            i18n.t("search.result_title", lang=lang, query=query), reply_markup=keyboard
+        )
 
     await callback.answer()

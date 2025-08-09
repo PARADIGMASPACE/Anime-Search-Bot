@@ -10,7 +10,15 @@ class AnimeCache:
     def _get_anime_key(self, shikimori_id: int, lang: str = "en") -> str:
         return f"anime:{shikimori_id}:{lang}"
 
-    async def cache_anime(self, shikimori_id: int, caption: str, cover_image: str, anilist_id: int, raw_data_db: dict, lang: str = "en"):
+    async def cache_anime(
+        self,
+        shikimori_id: int,
+        caption: str,
+        cover_image: str,
+        anilist_id: int,
+        raw_data_db: dict,
+        lang: str = "en",
+    ):
         try:
             key = self._get_anime_key(shikimori_id, lang)
             anime_data = {
@@ -19,14 +27,16 @@ class AnimeCache:
                 "anilist_id": anilist_id,
                 "shikimori_id": shikimori_id,
                 "raw_data_db": raw_data_db,
-                "lang": lang
+                "lang": lang,
             }
             await redis_client.set(key, anime_data, expire=self.anime_ttl)
             logger.info(f"Save anime data with key {key}")
         except Exception as e:
             logger.error(f"Error while caching: {e}")
 
-    async def get_cached_anime(self, shikimori_id: int, lang: str = "en") -> Optional[Dict[str, Any]]:
+    async def get_cached_anime(
+        self, shikimori_id: int, lang: str = "en"
+    ) -> Optional[Dict[str, Any]]:
         try:
             key = self._get_anime_key(shikimori_id, lang)
             data = await redis_client.get(key)
