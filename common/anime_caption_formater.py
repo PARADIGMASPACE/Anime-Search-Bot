@@ -6,7 +6,8 @@ from loguru import logger
 from api.translate import translate_text
 from common.anime_info_formatter import AnimeInfo
 from utils.i18n import i18n
-from utils.utils import _format_description, get_cover_image, strip_html_tags, format_genres, format_status, format_type
+from utils.utils import _format_description, get_cover_image, strip_html_tags, format_genres, format_status, \
+    format_type, log_api_response
 
 
 async def format_anime_caption(anime_info: AnimeInfo, lang: str):
@@ -105,4 +106,19 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
         caption_parts.append(description)
 
     caption = "\n".join(caption_parts)
+    debug_info = {
+        "title": title,
+        "type": type_,
+        "status": status_,
+        "genres": genres,
+        "rating": rating,
+        "episode_count": episode_count,
+        "release_date": release_date,
+        "airing_schedule": airing_schedule_str,
+        "description": description,
+        "cover_image": cover_image,
+        "raw_data_db": raw_data_db,
+        "anime_info_ids": getattr(anime_info, 'ids', {})
+    }
+    log_api_response("caption_debug", debug_info)
     return caption, cover_image, raw_data_db

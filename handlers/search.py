@@ -9,6 +9,7 @@ from services.anime_service import filter_top_anime, get_caption_and_cover_image
 from database.favorites import is_favorite_anime_user
 
 from utils.i18n import i18n
+from utils.utils import log_api_response
 
 search_router = Router()
 
@@ -35,6 +36,8 @@ async def handle_anime_search(message: types.Message, lang: str):
             filtered_anime = filter_top_anime(multiple_results, query=anime_name, top_n=5)
             await search_cache.cache_search_results(user_id, anime_name, filtered_anime)
             logger.info(f"New search performed | user_id: {user_id} | query: '{anime_name}' | results_count: {len(filtered_anime)}")
+
+        log_api_response("filtered_anime", filtered_anime)
 
         if filtered_anime:
             await search_cache.save_user_last_search(user_id, anime_name, filtered_anime)

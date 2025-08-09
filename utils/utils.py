@@ -1,6 +1,8 @@
 from datetime import datetime
 import html
 import re
+import os
+import json
 
 from loguru import logger
 
@@ -11,6 +13,7 @@ def classify_airing_schedule(schedule: list):
         "upcoming": [ep for ep in schedule if ep.get("airingAt", 0) > now],
         "past": [ep for ep in schedule if ep.get("airingAt", 0) <= now]
     }
+
 
 def strip_html_tags(text):
     if not text:
@@ -35,6 +38,7 @@ def _remove_last_sentences(text, n=2):
         return ' '.join(sentences[:-n])
     return text
 
+
 def _format_description(description, schedule_text):
     if description is None:
         return None
@@ -48,7 +52,6 @@ def _format_description(description, schedule_text):
     if len_description > max_desc_len:
         description = description[:max_desc_len] + "..."
     description = description.replace('<br>', '\n')
-    logger.debug(f"<blockquote>{description}</blockquote>")
     return f"<blockquote>{description}</blockquote>"
 
 
@@ -137,6 +140,7 @@ def format_genres(genres: list[str]):
     translated = [genre_mapping.get(g.lower(), g) for g in genres]
     return translated
 
+
 def get_cover_image(cover_image_data):
     anilist_url = cover_image_data.get("image_anilist")
     shikimori_url = cover_image_data.get("image_shikimori")
@@ -149,3 +153,21 @@ def get_cover_image(cover_image_data):
     else:
         cover_image = anilist_url or (None if is_shikimori_missing else shikimori_url)
     return cover_image
+
+
+def log_api_response(source: str, data: dict, file_path: str = None):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if file_path is None:
+        file_path = os.path.join(base_dir, "anime_info.txt")
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = json.load(f)
+        else:
+            content = {}
+        content[source] = data
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(content, f, ensure_ascii=False, indent=2)
+        logger.info(f"API response from {source} saved to {file_path}")
+    except Exception as e:
+        logger.error(f"Failed to log API response: {e} (path: {file_path})")

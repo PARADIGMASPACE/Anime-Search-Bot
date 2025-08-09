@@ -1,6 +1,7 @@
 import asyncio
 import aiohttp
 from loguru import logger
+from utils.utils import log_api_response
 
 _ANILIST_QUERY = '''
     query ($id: Int) {
@@ -95,8 +96,12 @@ async def _fetch_anilist(variables: dict, query):
 
 
 async def get_info_about_anime_from_anilist_by_id(anime_id: int):
-    return await _fetch_anilist({"id": anime_id}, query=_ANILIST_QUERY)
+    data = await _fetch_anilist({"id": anime_id}, query=_ANILIST_QUERY)
+    log_api_response("anilist", data)
+    return data
 
 
 async def get_info_about_anime_from_anilist_by_mal_id(mal_id: int):
-    return await _fetch_anilist({"idMal": mal_id}, query=_ANILIST_QUERY_BY_MAL_ID)
+    data = await _fetch_anilist({"idMal": mal_id}, query=_ANILIST_QUERY_BY_MAL_ID)
+    log_api_response("anilist_mal_id", data)
+    return data
