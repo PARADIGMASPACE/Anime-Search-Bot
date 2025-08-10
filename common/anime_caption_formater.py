@@ -18,7 +18,8 @@ from utils.utils import (
 
 
 async def format_anime_caption(anime_info: AnimeInfo, lang: str):
-    logger.info(anime_info.__dict__)
+    log_api_response("anime_info_input", anime_info.__dict__)
+
     title_data = anime_info.title()
     type_data = anime_info.type()
     status_data = anime_info.status()

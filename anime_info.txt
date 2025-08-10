@@ -1,0 +1,512 @@
+{
+  "filtered_anime": [
+    {
+      "id": 32998,
+      "name": "91 Days",
+      "russian": "91 день",
+      "image": {
+        "original": "/system/animes/original/32998.jpg?1711937952",
+        "preview": "/system/animes/preview/32998.jpg?1711937952",
+        "x96": "/system/animes/x96/32998.jpg?1711937952",
+        "x48": "/system/animes/x48/32998.jpg?1711937952"
+      },
+      "url": "/animes/32998-91-days",
+      "kind": "tv",
+      "score": "7.82",
+      "status": "released",
+      "episodes": 12,
+      "episodes_aired": 12,
+      "aired_on": "2016-07-09",
+      "released_on": "2016-10-01"
+    },
+    {
+      "id": 34777,
+      "name": "91 Days: Toki no Asase/Subete no Kinou/Ashita, Mata Ashita",
+      "russian": "91 день: День 13",
+      "image": {
+        "original": "/system/animes/original/34777.jpg?1711937932",
+        "preview": "/system/animes/preview/34777.jpg?1711937932",
+        "x96": "/system/animes/x96/34777.jpg?1711937932",
+        "x48": "/system/animes/x48/34777.jpg?1711937932"
+      },
+      "url": "/animes/34777-91-days-toki-no-asase-subete-no-kinou-ashita-mata-ashita",
+      "kind": "special",
+      "score": "6.9",
+      "status": "released",
+      "episodes": 1,
+      "episodes_aired": 0,
+      "aired_on": "2017-07-05",
+      "released_on": null
+    },
+    {
+      "id": 33964,
+      "name": "91 Days: Mijikai Rousoku",
+      "russian": "91 день: Короткая свеча",
+      "image": {
+        "original": "/system/animes/original/33964.jpg?1711937901",
+        "preview": "/system/animes/preview/33964.jpg?1711937901",
+        "x96": "/system/animes/x96/33964.jpg?1711937901",
+        "x48": "/system/animes/x48/33964.jpg?1711937901"
+      },
+      "url": "/animes/33964-91-days-mijikai-rousoku",
+      "kind": "tv_special",
+      "score": "6.55",
+      "status": "released",
+      "episodes": 1,
+      "episodes_aired": 0,
+      "aired_on": "2016-08-26",
+      "released_on": null
+    },
+    {
+      "id": 31414,
+      "name": "Nijiiro Days",
+      "russian": "Радужные дни",
+      "image": {
+        "original": "/system/animes/original/31414.jpg?1711966170",
+        "preview": "/system/animes/preview/31414.jpg?1711966170",
+        "x96": "/system/animes/x96/31414.jpg?1711966170",
+        "x48": "/system/animes/x48/31414.jpg?1711966170"
+      },
+      "url": "/animes/31414-nijiiro-days",
+      "kind": "tv",
+      "score": "7.26",
+      "status": "released",
+      "episodes": 24,
+      "episodes_aired": 24,
+      "aired_on": "2016-01-10",
+      "released_on": "2016-06-26"
+    },
+    {
+      "id": 32494,
+      "name": "Days",
+      "russian": "Дни",
+      "image": {
+        "original": "/system/animes/original/32494.jpg?1711947349",
+        "preview": "/system/animes/preview/32494.jpg?1711947349",
+        "x96": "/system/animes/x96/32494.jpg?1711947349",
+        "x48": "/system/animes/x48/32494.jpg?1711947349"
+      },
+      "url": "/animes/32494-days",
+      "kind": "tv",
+      "score": "7.16",
+      "status": "released",
+      "episodes": 24,
+      "episodes_aired": 24,
+      "aired_on": "2016-07-03",
+      "released_on": "2016-12-18"
+    }
+  ],
+  "shikimori_id": {
+    "id": 33964,
+    "name": "91 Days: Mijikai Rousoku",
+    "russian": "91 день: Короткая свеча",
+    "image": {
+      "original": "/system/animes/original/33964.jpg?1711937901",
+      "preview": "/system/animes/preview/33964.jpg?1711937901",
+      "x96": "/system/animes/x96/33964.jpg?1711937901",
+      "x48": "/system/animes/x48/33964.jpg?1711937901"
+    },
+    "url": "/animes/33964-91-days-mijikai-rousoku",
+    "kind": "tv_special",
+    "score": "6.55",
+    "status": "released",
+    "episodes": 1,
+    "episodes_aired": 0,
+    "aired_on": "2016-08-26",
+    "released_on": null,
+    "rating": "r",
+    "english": [
+      "91 Days: Brief Candle"
+    ],
+    "japanese": [
+      "91Days『Day7.5 短いローソク』"
+    ],
+    "synonyms": [
+      "91 Days Recap",
+      "91 Days Episode 7.5",
+      "Day 7.5 Mijikai Rousoku",
+      "Day 7.5 Short Candle"
+    ],
+    "license_name_ru": "91 день: Свечной огарок",
+    "duration": 24,
+    "description": "Пересказ первых семи эпизодов аниме-сериала «[91 Days]».",
+    "description_html": "<div class=\"b-text_with_paragraphs\">Пересказ первых семи эпизодов аниме-сериала «<a href=\"https://shikimori.one/animes/32998-91-days\" title=\"91 Days\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/animes/32998-91-days/tooltip\" data-attrs=\"{&quot;id&quot;:32998,&quot;type&quot;:&quot;anime&quot;,&quot;name&quot;:&quot;91 Days&quot;,&quot;russian&quot;:&quot;91 день&quot;}\">91 день</a>».</div>",
+    "description_source": null,
+    "franchise": "91_days",
+    "favoured": false,
+    "anons": false,
+    "ongoing": false,
+    "thread_id": 204737,
+    "topic_id": 204737,
+    "myanimelist_id": 33964,
+    "rates_scores_stats": [
+      {
+        "name": 10,
+        "value": 270
+      },
+      {
+        "name": 9,
+        "value": 137
+      },
+      {
+        "name": 8,
+        "value": 272
+      },
+      {
+        "name": 7,
+        "value": 524
+      },
+      {
+        "name": 6,
+        "value": 485
+      },
+      {
+        "name": 5,
+        "value": 233
+      },
+      {
+        "name": 4,
+        "value": 50
+      },
+      {
+        "name": 3,
+        "value": 21
+      },
+      {
+        "name": 2,
+        "value": 10
+      },
+      {
+        "name": 1,
+        "value": 28
+      }
+    ],
+    "rates_statuses_stats": [
+      {
+        "name": "Запланировано",
+        "value": 1943
+      },
+      {
+        "name": "Просмотрено",
+        "value": 5970
+      },
+      {
+        "name": "Смотрю",
+        "value": 54
+      },
+      {
+        "name": "Брошено",
+        "value": 140
+      },
+      {
+        "name": "Отложено",
+        "value": 68
+      }
+    ],
+    "updated_at": "2025-08-01T05:12:19.707+03:00",
+    "next_episode_at": null,
+    "fansubbers": [
+      "Crunchyroll",
+      "AniPlay",
+      "Nippon Tavern",
+      "YakuSub Studio",
+      "IDA",
+      "AOS Team"
+    ],
+    "fandubbers": [
+      "Jart-team",
+      "SHIZA Project",
+      "AniChaos",
+      "AnimeJet",
+      "Unravel",
+      "AniMedia",
+      "AniZone",
+      "Комната Диди"
+    ],
+    "licensors": [
+      "Crunchyroll"
+    ],
+    "genres": [
+      {
+        "id": 1,
+        "name": "Action",
+        "russian": "Экшен",
+        "kind": "genre",
+        "entry_type": "Anime"
+      },
+      {
+        "id": 8,
+        "name": "Drama",
+        "russian": "Драма",
+        "kind": "genre",
+        "entry_type": "Anime"
+      },
+      {
+        "id": 13,
+        "name": "Historical",
+        "russian": "Исторический",
+        "kind": "genre",
+        "entry_type": "Anime"
+      }
+    ],
+    "studios": [
+      {
+        "id": 1119,
+        "name": "Shuka",
+        "filtered_name": "Shuka",
+        "real": false,
+        "image": "/system/studios/original/1119.png?1589290644"
+      }
+    ],
+    "videos": [
+      {
+        "id": 51056,
+        "url": "https://youtu.be/jkd__a6WmS4",
+        "image_url": "http://img.youtube.com/vi/jkd__a6WmS4/hqdefault.jpg",
+        "player_url": "http://youtube.com/embed/jkd__a6WmS4",
+        "name": "OP «‎Signal» — TK from Ling tosite sigure",
+        "kind": "op",
+        "hosting": "youtube"
+      },
+      {
+        "id": 51057,
+        "url": "https://youtu.be/Ad0gGaSeb6M",
+        "image_url": "http://img.youtube.com/vi/Ad0gGaSeb6M/hqdefault.jpg",
+        "player_url": "http://youtube.com/embed/Ad0gGaSeb6M",
+        "name": "ED «Rain or Shine» — ELISA",
+        "kind": "ed",
+        "hosting": "youtube"
+      }
+    ],
+    "screenshots": [
+      {
+        "original": "/system/screenshots/original/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736",
+        "preview": "/system/screenshots/x332/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736"
+      },
+      {
+        "original": "/system/screenshots/original/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750",
+        "preview": "/system/screenshots/x332/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750"
+      }
+    ],
+    "user_rate": null
+  },
+  "anilist_mal_id": {},
+  "anime_info_input": {
+    "shikimori": {
+      "id": 33964,
+      "name": "91 Days: Mijikai Rousoku",
+      "russian": "91 день: Короткая свеча",
+      "image": {
+        "original": "/system/animes/original/33964.jpg?1711937901",
+        "preview": "/system/animes/preview/33964.jpg?1711937901",
+        "x96": "/system/animes/x96/33964.jpg?1711937901",
+        "x48": "/system/animes/x48/33964.jpg?1711937901"
+      },
+      "url": "/animes/33964-91-days-mijikai-rousoku",
+      "kind": "tv_special",
+      "score": "6.55",
+      "status": "released",
+      "episodes": 1,
+      "episodes_aired": 0,
+      "aired_on": "2016-08-26",
+      "released_on": null,
+      "rating": "r",
+      "english": [
+        "91 Days: Brief Candle"
+      ],
+      "japanese": [
+        "91Days『Day7.5 短いローソク』"
+      ],
+      "synonyms": [
+        "91 Days Recap",
+        "91 Days Episode 7.5",
+        "Day 7.5 Mijikai Rousoku",
+        "Day 7.5 Short Candle"
+      ],
+      "license_name_ru": "91 день: Свечной огарок",
+      "duration": 24,
+      "description": "Пересказ первых семи эпизодов аниме-сериала «[91 Days]».",
+      "description_html": "<div class=\"b-text_with_paragraphs\">Пересказ первых семи эпизодов аниме-сериала «<a href=\"https://shikimori.one/animes/32998-91-days\" title=\"91 Days\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/animes/32998-91-days/tooltip\" data-attrs=\"{&quot;id&quot;:32998,&quot;type&quot;:&quot;anime&quot;,&quot;name&quot;:&quot;91 Days&quot;,&quot;russian&quot;:&quot;91 день&quot;}\">91 день</a>».</div>",
+      "description_source": null,
+      "franchise": "91_days",
+      "favoured": false,
+      "anons": false,
+      "ongoing": false,
+      "thread_id": 204737,
+      "topic_id": 204737,
+      "myanimelist_id": 33964,
+      "rates_scores_stats": [
+        {
+          "name": 10,
+          "value": 270
+        },
+        {
+          "name": 9,
+          "value": 137
+        },
+        {
+          "name": 8,
+          "value": 272
+        },
+        {
+          "name": 7,
+          "value": 524
+        },
+        {
+          "name": 6,
+          "value": 485
+        },
+        {
+          "name": 5,
+          "value": 233
+        },
+        {
+          "name": 4,
+          "value": 50
+        },
+        {
+          "name": 3,
+          "value": 21
+        },
+        {
+          "name": 2,
+          "value": 10
+        },
+        {
+          "name": 1,
+          "value": 28
+        }
+      ],
+      "rates_statuses_stats": [
+        {
+          "name": "Запланировано",
+          "value": 1943
+        },
+        {
+          "name": "Просмотрено",
+          "value": 5970
+        },
+        {
+          "name": "Смотрю",
+          "value": 54
+        },
+        {
+          "name": "Брошено",
+          "value": 140
+        },
+        {
+          "name": "Отложено",
+          "value": 68
+        }
+      ],
+      "updated_at": "2025-08-01T05:12:19.707+03:00",
+      "next_episode_at": null,
+      "fansubbers": [
+        "Crunchyroll",
+        "AniPlay",
+        "Nippon Tavern",
+        "YakuSub Studio",
+        "IDA",
+        "AOS Team"
+      ],
+      "fandubbers": [
+        "Jart-team",
+        "SHIZA Project",
+        "AniChaos",
+        "AnimeJet",
+        "Unravel",
+        "AniMedia",
+        "AniZone",
+        "Комната Диди"
+      ],
+      "licensors": [
+        "Crunchyroll"
+      ],
+      "genres": [
+        {
+          "id": 1,
+          "name": "Action",
+          "russian": "Экшен",
+          "kind": "genre",
+          "entry_type": "Anime"
+        },
+        {
+          "id": 8,
+          "name": "Drama",
+          "russian": "Драма",
+          "kind": "genre",
+          "entry_type": "Anime"
+        },
+        {
+          "id": 13,
+          "name": "Historical",
+          "russian": "Исторический",
+          "kind": "genre",
+          "entry_type": "Anime"
+        }
+      ],
+      "studios": [
+        {
+          "id": 1119,
+          "name": "Shuka",
+          "filtered_name": "Shuka",
+          "real": false,
+          "image": "/system/studios/original/1119.png?1589290644"
+        }
+      ],
+      "videos": [
+        {
+          "id": 51056,
+          "url": "https://youtu.be/jkd__a6WmS4",
+          "image_url": "http://img.youtube.com/vi/jkd__a6WmS4/hqdefault.jpg",
+          "player_url": "http://youtube.com/embed/jkd__a6WmS4",
+          "name": "OP «‎Signal» — TK from Ling tosite sigure",
+          "kind": "op",
+          "hosting": "youtube"
+        },
+        {
+          "id": 51057,
+          "url": "https://youtu.be/Ad0gGaSeb6M",
+          "image_url": "http://img.youtube.com/vi/Ad0gGaSeb6M/hqdefault.jpg",
+          "player_url": "http://youtube.com/embed/Ad0gGaSeb6M",
+          "name": "ED «Rain or Shine» — ELISA",
+          "kind": "ed",
+          "hosting": "youtube"
+        }
+      ],
+      "screenshots": [
+        {
+          "original": "/system/screenshots/original/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736",
+          "preview": "/system/screenshots/x332/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736"
+        },
+        {
+          "original": "/system/screenshots/original/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750",
+          "preview": "/system/screenshots/x332/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750"
+        }
+      ],
+      "user_rate": null
+    },
+    "anilist": {}
+  },
+  "caption_debug": {
+    "title": "",
+    "type": "",
+    "status": null,
+    "genres": [],
+    "rating": 65.5,
+    "episode_count": 1,
+    "release_date": "2016-08-26",
+    "airing_schedule": "",
+    "description": "<blockquote></blockquote>",
+    "cover_image": "https://shikimori.one/system/animes/original/33964.jpg?1711937901",
+    "raw_data_db": {
+      "total_episodes_relase": 1,
+      "title_ru": "91 день: Короткая свеча",
+      "title_original": "91 Days: Mijikai Rousoku"
+    },
+    "anime_info_ids": {
+      "shikimori_id": 33964,
+      "anilist_id": ""
+    }
+  }
+}

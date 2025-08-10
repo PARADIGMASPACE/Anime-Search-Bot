@@ -164,7 +164,7 @@ def log_api_response(source: str, data: dict, file_path: str = None):
     if file_path is None:
         file_path = os.path.join(base_dir, "anime_info.txt")
     try:
-        if os.path.exists(file_path):
+        if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
             with open(file_path, "r", encoding="utf-8") as f:
                 content = json.load(f)
         else:
