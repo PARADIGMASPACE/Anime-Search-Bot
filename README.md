@@ -1,148 +1,137 @@
 # Anime Search Bot
 
-A Telegram bot for searching anime information, adding titles to favorites, and receiving notifications about new episode releases. Built with asynchronous Python, it integrates APIs from AniList and Shikimori, uses Redis for efficient caching to minimize API calls, and PostgreSQL for persistent storage. Translations of descriptions are handled via LibreTranslate. The bot emphasizes speed, scalability, and clean architecture.
+A Telegram bot for searching anime information, managing favorites, and receiving notifications about new episode releases.  
+Built with asynchronous Python, it integrates AniList and Shikimori APIs, uses Redis caching to reduce API calls, and PostgreSQL for storage.  
+Descriptions are translated via LibreTranslate.  
+Focus on speed, scalability, and clean architecture.
 
-- **Anime Search**: Search for any anime by name and get detailed info including:
-  - Title (original and Russian)
-  - Type (e.g., TV-series)
-  - Status (e.g., Announced)
-  - Genres (e.g., Action, Adventure, Fantasy)
-  - Episode count
-  - Description (translated if needed)
-  - Photo/poster
+## Features
 
-- **Favorites Management**: Add anime to favorites, view list, delete entries, and get quick info on favorited titles.
+### Anime Search
+Search anime by name with details including:
+- Original and Russian titles
+- Type (e.g., TV-series)
+- Status (e.g., Announced)
+- Genres (Action, Adventure, Fantasy)
+- Episode count
+- Translated description
+- Poster image
 
-- **Episode Notifications**: Automatic checks twice a day (via APScheduler) against AniList API for all anime in the database. If the episode count increases, users who favorited it receive Telegram notifications.
+### Favorites Management
+Add, view, delete favorites; quick info on favorited anime.
 
-- **Multi-Language Support**: Choose English or Russian (/language command). Descriptions from AniList are translated using LibreTranslate.
+### Episode Notifications
+Twice-daily automated checks (APScheduler) to AniList API.  
+Users get Telegram notifications on new episodes.
 
-- **Commands**:
-  - `/start`: Initialize bot, choose language.
-  - Text input: Search anime by name.
-  - `/favorites`: View favorites list with options to delete or view info.
-  - `/language`: Change language.
+### Multi-language Support
+English and Russian selectable via `/language` command.  
+Descriptions auto-translated with LibreTranslate.
 
-- **Performance Optimizations**: Multi-level Redis caching (anime info, favorites, searches, users) to reduce API requests and boost response speed. Asynchronous handling with aiogram and aiohttp.
+## Performance Optimizations
+- Multi-layer Redis caching for anime, favorites, searches, users to reduce API requests.
+- Asynchronous handling with aiogram and aiohttp.
 
 ## Tech Stack
-
-- **Framework**: Aiogram (Telegram Bot API, async)
-- **APIs**: AniList, Shikimori (parallel queries for comprehensive data), LibreTranslate (for descriptions)
-- **Database**: PostgreSQL (users, anime, favorites, languages)
-- **Caching**: Redis (stateful, multi-layered for anime, favorites, searches, users)
-- **Scheduler**: APScheduler (episode checks)
-- **Other Libraries**:
-  - aiohttp==3.12.13
-  - aiogram==3.21.0
-  - redis==5.2.0
-  - python-dotenv==1.1.1
-  - asyncpg==0.29.0
-  - APScheduler==3.11.0
-  - loguru
-  - requests==2.32.4
-  - httpx
-  - bleach
-  - Testing: pytest, pytest-asyncio, pytest-cov
-  - Linting: ruff, black, isort
-  - Security: bandit, safety
-
-- **Deployment**: Docker Compose (includes PostgreSQL, Redis, LibreTranslate)
-- **Architecture Highlights**:
-  - Asynchronous design for high concurrency.
-  - Modular structure: API integrations, services (anime/favorites), handlers (search, favorites, nav), middleware (antiflood, language).
-  - DB Schema:
-    ```sql
-    CREATE TABLE IF NOT EXISTS languages (
-        id SERIAL PRIMARY KEY,
-        code TEXT NOT NULL UNIQUE,
-        name TEXT NOT NULL
-    );
-    -- Default inserts: ('en', 'English'), ('ru', 'Русский')
-
-    CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        telegram_user_id BIGINT NOT NULL UNIQUE,
-        user_language TEXT DEFAULT 'EN'
-    );
-
-    CREATE TABLE IF NOT EXISTS anime (
-        id SERIAL PRIMARY KEY,
-        title_original TEXT,
-        title_ru TEXT,
-        id_anilist BIGINT UNIQUE,
-        id_shikimori BIGINT UNIQUE,
-        total_episodes_relase INTEGER DEFAULT 0
-    );
-
-    CREATE TABLE IF NOT EXISTS favorites (
-        user_id BIGINT NOT NULL,
-        anime_id INTEGER NOT NULL REFERENCES anime(id) ON DELETE CASCADE,
-        PRIMARY KEY (user_id, anime_id)
-    );
-    ```
-  - Caching reduces API load: Stores anime details, user data, etc., making the bot responsive even under load.
+- **Python** 3.10+
+- **Aiogram** (Telegram Bot API, async)
+- **AniList and Shikimori APIs** (parallel queries)
+- **LibreTranslate API** for description translation
+- **PostgreSQL** for users, anime, favorites, languages
+- **Redis** for caching
+- **APScheduler** for episode checks
+- **Docker Compose** to run bot, DB, Redis, LibreTranslate
 
 ## Installation
+1. Clone repository:  
+   ```
+   git clone https://github.com/PARADIGMASPACE/Anime-Search-Bot.git
+   cd Anime-Search-Bot
+   ```
 
-1. Clone the repository:
+2. Create `.env` file with variables:  
    ```
-   git clone <repo-url>
-   cd <repo-dir>
+   TOKEN=your_telegram_bot_token
    ```
 
-2. Create `.env` file:
+3. Run with Docker Compose:  
    ```
-   TOKEN=telegram-bot-token
+   docker-compose up -d --build
    ```
-   - Obtain `telegram-bot-token` from BotFather on Telegram.
-
-3. Build and run with Docker Compose:
-   ```
-   docker-compose up --build -d
-   ```
-   - This sets up the bot, PostgreSQL, Redis, and LibreTranslate.
-   - Initialize favorites DB if needed: Run `init_favorites.sql` manually or via bot startup.
 
 ## Usage
+- Start bot in Telegram: `/start`
+- Select language (English or Russian)
+- Search anime by sending its name
+- Manage favorites with `/favorites`
+- Change language with `/language`
+- Receive notifications on new episodes for favorites
 
-1. Start the bot in Telegram: `/start`
-2. Choose language (English/Russian).
-3. Search anime: Send the name as text (e.g., "Naruto").
-4. Add to favorites from search results.
-5. View/manage favorites: `/favorites`
-6. Change language: `/language`
-7. Notifications: Automatically sent for new episodes on favorited anime (checks run twice daily).
+## Project Structure
+- `bot.py` - Entry point
+- `handlers/` - Telegram handlers (commands, callbacks)
+- `services/` - API integrations, business logic
+- `database/` - DB interactions
+- `middleware/` - Logging, antiflood, language
+- `utils/` - Helpers and utilities
+- `tests/` - Automated tests
+
+## Database Schema (PostgreSQL)
+```sql
+TABLE languages
+  id SERIAL PRIMARY KEY
+  code TEXT UNIQUE NOT NULL
+  name TEXT NOT NULL
+  -- Defaults: ('en', 'English'), ('ru', 'Русский')
+
+TABLE users
+  id SERIAL PRIMARY KEY
+  telegram_user_id BIGINT UNIQUE NOT NULL
+  user_language TEXT DEFAULT 'EN'
+
+TABLE anime
+  id SERIAL PRIMARY KEY
+  title_original TEXT
+  title_ru TEXT
+  id_anilist BIGINT UNIQUE
+  id_shikimori BIGINT UNIQUE
+  total_episodes_relase INTEGER DEFAULT 0
+
+TABLE favorites
+  user_id BIGINT NOT NULL REFERENCES users(telegram_user_id) ON DELETE CASCADE
+  anime_id INTEGER NOT NULL REFERENCES anime(id) ON DELETE CASCADE
+  PRIMARY KEY (user_id, anime_id)
+```
 
 ## Testing
+Run tests:  
+```
+pytest -v tests/
+```
 
-- Run tests locally:
-  ```
-  pytest -v
-  ```
-- Focus: Database operations (users, anime, favorites), services (anime/favorite logic), utils (caption formatting).
-- Coverage: Generated via `--cov` flag (e.g., `pytest --cov=database --cov=services --cov=utils`).
+Generate coverage:  
+```
+pytest --cov=database --cov=services --cov=utils
+```
 
 ## CI/CD
+GitHub Actions:
+- Runs on push/PR to main or develop branches
+- Tests with Python 3.11, Postgres, Redis services
+- Linting with ruff, black (check), isort
+- Deployment manual via Docker Compose
 
-GitHub Actions workflow (`ci.yml`):
-- Triggers: Push/PR to `main` or `develop`.
-- Jobs:
-  - **Test**: Sets up Python 3.11, Postgres/Redis services, installs deps, creates test DB tables, runs `pytest -v`, generates coverage.
-  - **Lint**: Runs ruff, black (--check), isort (--check-only) for code quality.
-
-No CD deployment; manual `docker-compose` for production.
+## Commands
+| Command    | Description                  |
+|------------|------------------------------|
+| `/start`   | Start bot, select language   |
+| `/favorites` | View and manage favorites  |
+| `/language` | Change bot language         |
+| Text input | Search anime by name         |
 
 ## Contributing
-
-Pull requests welcome! Follow these steps:
-1. Fork the repo.
-2. Create a branch: `git checkout -b feature/xyz`.
-3. Commit changes.
-4. Push and open PR.
-
-Ensure tests pass and linting is clean.
+Fork repo → create branch → commit → PR.  
+Ensure tests pass and linting clean.
 
 ## License
-
-MIT License.
+MIT License
