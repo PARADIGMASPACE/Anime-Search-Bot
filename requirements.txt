@@ -9,3 +9,5 @@ loguru
 requests==2.32.4
 httpx
 bleach
+pytest
+pytest-asyncio
