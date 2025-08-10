@@ -2,8 +2,6 @@
 
 A Telegram bot for searching anime information, adding titles to favorites, and receiving notifications about new episode releases. Built with asynchronous Python, it integrates APIs from AniList and Shikimori, uses Redis for efficient caching to minimize API calls, and PostgreSQL for persistent storage. Translations of descriptions are handled via LibreTranslate. The bot emphasizes speed, scalability, and clean architecture.
 
-## Features
-
 - **Anime Search**: Search for any anime by name and get detailed info including:
   - Title (original and Russian)
   - Type (e.g., TV-series)
@@ -93,11 +91,11 @@ A Telegram bot for searching anime information, adding titles to favorites, and 
    cd <repo-dir>
    ```
 
-2. Create `.env` file (use `.env.example` as template):
+2. Create `.env` file:
    ```
-   BOT_TOKEN=your-telegram-bot-token
+   TOKEN=telegram-bot-token
    ```
-   - Obtain `BOT_TOKEN` from BotFather on Telegram.
+   - Obtain `telegram-bot-token` from BotFather on Telegram.
 
 3. Build and run with Docker Compose:
    ```
