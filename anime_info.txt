@@ -1,230 +1,226 @@
 {
   "filtered_anime": [
     {
-      "id": 32998,
-      "name": "91 Days",
-      "russian": "91 день",
+      "id": 269,
+      "name": "Bleach",
+      "russian": "Блич",
       "image": {
-        "original": "/system/animes/original/32998.jpg?1711937952",
-        "preview": "/system/animes/preview/32998.jpg?1711937952",
-        "x96": "/system/animes/x96/32998.jpg?1711937952",
-        "x48": "/system/animes/x48/32998.jpg?1711937952"
+        "original": "/system/animes/original/269.jpg?1711944143",
+        "preview": "/system/animes/preview/269.jpg?1711944143",
+        "x96": "/system/animes/x96/269.jpg?1711944143",
+        "x48": "/system/animes/x48/269.jpg?1711944143"
       },
-      "url": "/animes/32998-91-days",
+      "url": "/animes/y269-bleach",
       "kind": "tv",
-      "score": "7.82",
+      "score": "7.98",
       "status": "released",
-      "episodes": 12,
-      "episodes_aired": 12,
-      "aired_on": "2016-07-09",
-      "released_on": "2016-10-01"
+      "episodes": 366,
+      "episodes_aired": 366,
+      "aired_on": "2004-10-05",
+      "released_on": "2012-03-27"
     },
     {
-      "id": 34777,
-      "name": "91 Days: Toki no Asase/Subete no Kinou/Ashita, Mata Ashita",
-      "russian": "91 день: День 13",
+      "id": 60636,
+      "name": "Bleach: Sennen Kessen-hen - Kashin-tan",
+      "russian": "Блич: Тысячелетняя кровавая война — Бедствие",
       "image": {
-        "original": "/system/animes/original/34777.jpg?1711937932",
-        "preview": "/system/animes/preview/34777.jpg?1711937932",
-        "x96": "/system/animes/x96/34777.jpg?1711937932",
-        "x48": "/system/animes/x48/34777.jpg?1711937932"
+        "original": "/assets/globals/missing_original.jpg",
+        "preview": "/assets/globals/missing_preview.jpg",
+        "x96": "/assets/globals/missing_x96.jpg",
+        "x48": "/assets/globals/missing_x48.jpg"
       },
-      "url": "/animes/34777-91-days-toki-no-asase-subete-no-kinou-ashita-mata-ashita",
-      "kind": "special",
-      "score": "6.9",
-      "status": "released",
-      "episodes": 1,
+      "url": "/animes/60636-bleach-sennen-kessen-hen-kashin-tan",
+      "kind": "tv",
+      "score": "0.0",
+      "status": "anons",
+      "episodes": 0,
       "episodes_aired": 0,
-      "aired_on": "2017-07-05",
+      "aired_on": "2026-01-01",
       "released_on": null
     },
     {
-      "id": 33964,
-      "name": "91 Days: Mijikai Rousoku",
-      "russian": "91 день: Короткая свеча",
+      "id": 41467,
+      "name": "Bleach: Sennen Kessen-hen",
+      "russian": "Блич: Тысячелетняя кровавая война",
       "image": {
-        "original": "/system/animes/original/33964.jpg?1711937901",
-        "preview": "/system/animes/preview/33964.jpg?1711937901",
-        "x96": "/system/animes/x96/33964.jpg?1711937901",
-        "x48": "/system/animes/x48/33964.jpg?1711937901"
+        "original": "/system/animes/original/41467.jpg?1711944193",
+        "preview": "/system/animes/preview/41467.jpg?1711944193",
+        "x96": "/system/animes/x96/41467.jpg?1711944193",
+        "x48": "/system/animes/x48/41467.jpg?1711944193"
       },
-      "url": "/animes/33964-91-days-mijikai-rousoku",
-      "kind": "tv_special",
-      "score": "6.55",
+      "url": "/animes/41467-bleach-sennen-kessen-hen",
+      "kind": "tv",
+      "score": "9.0",
       "status": "released",
-      "episodes": 1,
-      "episodes_aired": 0,
-      "aired_on": "2016-08-26",
-      "released_on": null
+      "episodes": 13,
+      "episodes_aired": 13,
+      "aired_on": "2022-10-11",
+      "released_on": "2022-12-27"
     },
     {
-      "id": 31414,
-      "name": "Nijiiro Days",
-      "russian": "Радужные дни",
+      "id": 53998,
+      "name": "Bleach: Sennen Kessen-hen - Ketsubetsu-tan",
+      "russian": "Блич: Тысячелетняя кровавая война — Прощание",
       "image": {
-        "original": "/system/animes/original/31414.jpg?1711966170",
-        "preview": "/system/animes/preview/31414.jpg?1711966170",
-        "x96": "/system/animes/x96/31414.jpg?1711966170",
-        "x48": "/system/animes/x48/31414.jpg?1711966170"
+        "original": "/system/animes/original/53998.jpg?1710729258",
+        "preview": "/system/animes/preview/53998.jpg?1710729258",
+        "x96": "/system/animes/x96/53998.jpg?1710729258",
+        "x48": "/system/animes/x48/53998.jpg?1710729258"
       },
-      "url": "/animes/31414-nijiiro-days",
+      "url": "/animes/53998-bleach-sennen-kessen-hen-ketsubetsu-tan",
       "kind": "tv",
-      "score": "7.26",
+      "score": "8.7",
       "status": "released",
-      "episodes": 24,
-      "episodes_aired": 24,
-      "aired_on": "2016-01-10",
-      "released_on": "2016-06-26"
+      "episodes": 13,
+      "episodes_aired": 13,
+      "aired_on": "2023-07-08",
+      "released_on": "2023-09-30"
     },
     {
-      "id": 32494,
-      "name": "Days",
-      "russian": "Дни",
+      "id": 56784,
+      "name": "Bleach: Sennen Kessen-hen - Soukoku-tan",
+      "russian": "Блич: Тысячелетняя кровавая война — Конфликт",
       "image": {
-        "original": "/system/animes/original/32494.jpg?1711947349",
-        "preview": "/system/animes/preview/32494.jpg?1711947349",
-        "x96": "/system/animes/x96/32494.jpg?1711947349",
-        "x48": "/system/animes/x48/32494.jpg?1711947349"
+        "original": "/system/animes/original/56784.jpg?1711828335",
+        "preview": "/system/animes/preview/56784.jpg?1711828335",
+        "x96": "/system/animes/x96/56784.jpg?1711828335",
+        "x48": "/system/animes/x48/56784.jpg?1711828335"
       },
-      "url": "/animes/32494-days",
+      "url": "/animes/56784-bleach-sennen-kessen-hen-soukoku-tan",
       "kind": "tv",
-      "score": "7.16",
+      "score": "8.67",
       "status": "released",
-      "episodes": 24,
-      "episodes_aired": 24,
-      "aired_on": "2016-07-03",
-      "released_on": "2016-12-18"
+      "episodes": 14,
+      "episodes_aired": 14,
+      "aired_on": "2024-10-05",
+      "released_on": "2024-12-28"
     }
   ],
   "shikimori_id": {
-    "id": 33964,
-    "name": "91 Days: Mijikai Rousoku",
-    "russian": "91 день: Короткая свеча",
+    "id": 269,
+    "name": "Bleach",
+    "russian": "Блич",
     "image": {
-      "original": "/system/animes/original/33964.jpg?1711937901",
-      "preview": "/system/animes/preview/33964.jpg?1711937901",
-      "x96": "/system/animes/x96/33964.jpg?1711937901",
-      "x48": "/system/animes/x48/33964.jpg?1711937901"
+      "original": "/system/animes/original/269.jpg?1711944143",
+      "preview": "/system/animes/preview/269.jpg?1711944143",
+      "x96": "/system/animes/x96/269.jpg?1711944143",
+      "x48": "/system/animes/x48/269.jpg?1711944143"
     },
-    "url": "/animes/33964-91-days-mijikai-rousoku",
-    "kind": "tv_special",
-    "score": "6.55",
+    "url": "/animes/y269-bleach",
+    "kind": "tv",
+    "score": "7.98",
     "status": "released",
-    "episodes": 1,
-    "episodes_aired": 0,
-    "aired_on": "2016-08-26",
-    "released_on": null,
-    "rating": "r",
+    "episodes": 366,
+    "episodes_aired": 366,
+    "aired_on": "2004-10-05",
+    "released_on": "2012-03-27",
+    "rating": "pg_13",
     "english": [
-      "91 Days: Brief Candle"
+      "Bleach"
     ],
     "japanese": [
-      "91Days『Day7.5 短いローソク』"
+      "BLEACH - ブリーチ -"
     ],
-    "synonyms": [
-      "91 Days Recap",
-      "91 Days Episode 7.5",
-      "Day 7.5 Mijikai Rousoku",
-      "Day 7.5 Short Candle"
-    ],
-    "license_name_ru": "91 день: Свечной огарок",
+    "synonyms": [],
+    "license_name_ru": "Блич",
     "duration": 24,
-    "description": "Пересказ первых семи эпизодов аниме-сериала «[91 Days]».",
-    "description_html": "<div class=\"b-text_with_paragraphs\">Пересказ первых семи эпизодов аниме-сериала «<a href=\"https://shikimori.one/animes/32998-91-days\" title=\"91 Days\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/animes/32998-91-days/tooltip\" data-attrs=\"{&quot;id&quot;:32998,&quot;type&quot;:&quot;anime&quot;,&quot;name&quot;:&quot;91 Days&quot;,&quot;russian&quot;:&quot;91 день&quot;}\">91 день</a>».</div>",
+    "description": "Ичиго Куросаки с детства мог видеть призраков и духов умерших. Сейчас ему пятнадцать, живёт он в современной Японии и учится в старшей школе.\nВ один ничем не примечательный день в его спальне внезапно объявляется девушка — Рукия Кучики. Она синигами и сильно удивлена тем, что Ичиго может не только видеть её, но и, неслыханное дело, касаться. Начавшееся было выяснение отношений прерывается появлением Пустого, того самого, за которым и явилась Рукия. Бой с Пустым складывается неудачно: вынужденную защищать Ичиго, Рукию серьёзно ранят. Ради спасения Ичиго она передаёт ему часть собственных способностей, но, к её удивлению, Ичиго поглощает всю её энергию и сам становится синигами. Оставив Рукию без сил и практически беспомощной, Ичиго с лёгкостью одолевает Пустого.",
+    "description_html": "<div class=\"b-text_with_paragraphs\"><a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго Куросаки</a> с детства мог видеть призраков и духов умерших. Сейчас ему пятнадцать, живёт он в современной Японии и учится в старшей школе.<br>В один ничем не примечательный день в его спальне внезапно объявляется девушка — <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукия Кучики</a>. Она синигами и сильно удивлена тем, что <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> может не только видеть её, но и, неслыханное дело, касаться. Начавшееся было выяснение отношений прерывается появлением Пустого, того самого, за которым и явилась <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукия</a>. Бой с Пустым складывается неудачно: вынужденную защищать <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a>, <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукию</a> серьёзно ранят. Ради спасения <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> она передаёт ему часть собственных способностей, но, к её удивлению, <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> поглощает всю её энергию и сам становится синигами. Оставив <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукию</a> без сил и практически беспомощной, <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> с лёгкостью одолевает Пустого.</div>",
     "description_source": null,
-    "franchise": "91_days",
+    "franchise": "bleach",
     "favoured": false,
     "anons": false,
     "ongoing": false,
-    "thread_id": 204737,
-    "topic_id": 204737,
-    "myanimelist_id": 33964,
+    "thread_id": 3453,
+    "topic_id": 3453,
+    "myanimelist_id": 269,
     "rates_scores_stats": [
       {
         "name": 10,
-        "value": 270
+        "value": 18896
       },
       {
         "name": 9,
-        "value": 137
+        "value": 11043
       },
       {
         "name": 8,
-        "value": 272
+        "value": 14979
       },
       {
         "name": 7,
-        "value": 524
+        "value": 10369
       },
       {
         "name": 6,
-        "value": 485
+        "value": 4207
       },
       {
         "name": 5,
-        "value": 233
+        "value": 1805
       },
       {
         "name": 4,
-        "value": 50
+        "value": 752
       },
       {
         "name": 3,
-        "value": 21
+        "value": 261
       },
       {
         "name": 2,
-        "value": 10
+        "value": 168
       },
       {
         "name": 1,
-        "value": 28
+        "value": 320
       }
     ],
     "rates_statuses_stats": [
       {
         "name": "Запланировано",
-        "value": 1943
+        "value": 24650
       },
       {
         "name": "Просмотрено",
-        "value": 5970
+        "value": 95601
       },
       {
         "name": "Смотрю",
-        "value": 54
+        "value": 24154
       },
       {
         "name": "Брошено",
-        "value": 140
+        "value": 12676
       },
       {
         "name": "Отложено",
-        "value": 68
+        "value": 8671
       }
     ],
-    "updated_at": "2025-08-01T05:12:19.707+03:00",
+    "updated_at": "2025-08-14T16:34:48.090+03:00",
     "next_episode_at": null,
     "fansubbers": [
-      "Crunchyroll",
-      "AniPlay",
-      "Nippon Tavern",
-      "YakuSub Studio",
-      "IDA",
-      "AOS Team"
+      "VaLLaR",
+      "Мега-Аниме",
+      "Netflix",
+      "Arcane",
+      "Antravoco"
     ],
     "fandubbers": [
-      "Jart-team",
-      "SHIZA Project",
-      "AniChaos",
-      "AnimeJet",
-      "Unravel",
+      "AniDUB",
+      "AniLibria",
+      "Мега-Аниме",
+      "QTV",
+      "СВ-Дубль",
+      "Rain.Death",
       "AniMedia",
-      "AniZone",
-      "Комната Диди"
+      "AniPower",
+      "WiaDub"
     ],
     "licensors": [
-      "Crunchyroll"
+      "Netflix",
+      "2x2"
     ],
     "genres": [
       {
@@ -235,192 +231,228 @@
         "entry_type": "Anime"
       },
       {
-        "id": 8,
-        "name": "Drama",
-        "russian": "Драма",
+        "id": 2,
+        "name": "Adventure",
+        "russian": "Приключения",
         "kind": "genre",
         "entry_type": "Anime"
       },
       {
-        "id": 13,
-        "name": "Historical",
-        "russian": "Исторический",
+        "id": 10,
+        "name": "Fantasy",
+        "russian": "Фэнтези",
+        "kind": "genre",
+        "entry_type": "Anime"
+      },
+      {
+        "id": 27,
+        "name": "Shounen",
+        "russian": "Сёнен",
         "kind": "genre",
         "entry_type": "Anime"
       }
     ],
     "studios": [
       {
-        "id": 1119,
-        "name": "Shuka",
-        "filtered_name": "Shuka",
-        "real": false,
-        "image": "/system/studios/original/1119.png?1589290644"
+        "id": 1,
+        "name": "Studio Pierrot",
+        "filtered_name": "Pierrot",
+        "real": true,
+        "image": "/system/studios/original/1.png?1378753179"
       }
     ],
     "videos": [
       {
-        "id": 51056,
-        "url": "https://youtu.be/jkd__a6WmS4",
-        "image_url": "http://img.youtube.com/vi/jkd__a6WmS4/hqdefault.jpg",
-        "player_url": "http://youtube.com/embed/jkd__a6WmS4",
-        "name": "OP «‎Signal» — TK from Ling tosite sigure",
-        "kind": "op",
-        "hosting": "youtube"
+        "id": 31263,
+        "url": "https://vk.com/video-174476437_456240152",
+        "image_url": "http://sun6-13.userapi.com/c855228/v855228176/1c9055/AxoauPdtX_I.jpg",
+        "player_url": "http://vk.com/video_ext.php?oid=-174476437&id=456240152&hash=b6a00d6480a69d09",
+        "name": "Трейлер FAN",
+        "kind": "pv",
+        "hosting": "vk"
       },
       {
-        "id": 51057,
-        "url": "https://youtu.be/Ad0gGaSeb6M",
-        "image_url": "http://img.youtube.com/vi/Ad0gGaSeb6M/hqdefault.jpg",
-        "player_url": "http://youtube.com/embed/Ad0gGaSeb6M",
-        "name": "ED «Rain or Shine» — ELISA",
-        "kind": "ed",
+        "id": 47026,
+        "url": "https://youtu.be/0yk5H6vvfG4",
+        "image_url": "http://img.youtube.com/vi/0yk5H6vvfG4/hqdefault.jpg",
+        "player_url": "http://youtube.com/embed/0yk5H6vvfG4",
+        "name": "Трейлер DVD16 (VIZ Media) Dub",
+        "kind": "pv",
         "hosting": "youtube"
       }
     ],
     "screenshots": [
       {
-        "original": "/system/screenshots/original/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736",
-        "preview": "/system/screenshots/x332/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736"
+        "original": "/system/screenshots/original/226d9990c5300e964883cdbfb28ea663950a8397.jpg?1677933236",
+        "preview": "/system/screenshots/x332/226d9990c5300e964883cdbfb28ea663950a8397.jpg?1677933236"
       },
       {
-        "original": "/system/screenshots/original/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750",
-        "preview": "/system/screenshots/x332/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750"
+        "original": "/system/screenshots/original/05c642ffc8578b481556939798726b47768f1a93.jpg?1677933236",
+        "preview": "/system/screenshots/x332/05c642ffc8578b481556939798726b47768f1a93.jpg?1677933236"
       }
     ],
     "user_rate": null
   },
-  "anilist_mal_id": {},
+  "anilist_mal_id": {
+    "data": {
+      "Media": {
+        "id": 269,
+        "title": {
+          "native": "BLEACH",
+          "romaji": "BLEACH",
+          "english": "Bleach"
+        },
+        "description": "Ichigo Kurosaki is a rather normal high school student apart from the fact he has the ability to see ghosts. This ability never impacted his life in a major way until the day he encounters the Shinigami Kuchiki Rukia, who saves him and his family's lives from a Hollow, a corrupt spirit that devours human souls. \n<br><br>\nWounded during the fight against the Hollow, Rukia chooses the only option available to defeat the monster and passes her Shinigami powers to Ichigo. Now forced to act as a substitute until Rukia recovers, Ichigo hunts down the Hollows that plague his town. \n\n\n",
+        "coverImage": {
+          "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png"
+        },
+        "averageScore": 78,
+        "episodes": 366,
+        "status": "FINISHED",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Supernatural"
+        ],
+        "duration": 24,
+        "type": "ANIME",
+        "startDate": {
+          "year": 2004,
+          "month": 10,
+          "day": 5
+        },
+        "airingSchedule": {
+          "nodes": []
+        }
+      }
+    }
+  },
   "anime_info_input": {
     "shikimori": {
-      "id": 33964,
-      "name": "91 Days: Mijikai Rousoku",
-      "russian": "91 день: Короткая свеча",
+      "id": 269,
+      "name": "Bleach",
+      "russian": "Блич",
       "image": {
-        "original": "/system/animes/original/33964.jpg?1711937901",
-        "preview": "/system/animes/preview/33964.jpg?1711937901",
-        "x96": "/system/animes/x96/33964.jpg?1711937901",
-        "x48": "/system/animes/x48/33964.jpg?1711937901"
+        "original": "/system/animes/original/269.jpg?1711944143",
+        "preview": "/system/animes/preview/269.jpg?1711944143",
+        "x96": "/system/animes/x96/269.jpg?1711944143",
+        "x48": "/system/animes/x48/269.jpg?1711944143"
       },
-      "url": "/animes/33964-91-days-mijikai-rousoku",
-      "kind": "tv_special",
-      "score": "6.55",
+      "url": "/animes/y269-bleach",
+      "kind": "tv",
+      "score": "7.98",
       "status": "released",
-      "episodes": 1,
-      "episodes_aired": 0,
-      "aired_on": "2016-08-26",
-      "released_on": null,
-      "rating": "r",
+      "episodes": 366,
+      "episodes_aired": 366,
+      "aired_on": "2004-10-05",
+      "released_on": "2012-03-27",
+      "rating": "pg_13",
       "english": [
-        "91 Days: Brief Candle"
+        "Bleach"
       ],
       "japanese": [
-        "91Days『Day7.5 短いローソク』"
+        "BLEACH - ブリーチ -"
       ],
-      "synonyms": [
-        "91 Days Recap",
-        "91 Days Episode 7.5",
-        "Day 7.5 Mijikai Rousoku",
-        "Day 7.5 Short Candle"
-      ],
-      "license_name_ru": "91 день: Свечной огарок",
+      "synonyms": [],
+      "license_name_ru": "Блич",
       "duration": 24,
-      "description": "Пересказ первых семи эпизодов аниме-сериала «[91 Days]».",
-      "description_html": "<div class=\"b-text_with_paragraphs\">Пересказ первых семи эпизодов аниме-сериала «<a href=\"https://shikimori.one/animes/32998-91-days\" title=\"91 Days\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/animes/32998-91-days/tooltip\" data-attrs=\"{&quot;id&quot;:32998,&quot;type&quot;:&quot;anime&quot;,&quot;name&quot;:&quot;91 Days&quot;,&quot;russian&quot;:&quot;91 день&quot;}\">91 день</a>».</div>",
+      "description": "Ичиго Куросаки с детства мог видеть призраков и духов умерших. Сейчас ему пятнадцать, живёт он в современной Японии и учится в старшей школе.\nВ один ничем не примечательный день в его спальне внезапно объявляется девушка — Рукия Кучики. Она синигами и сильно удивлена тем, что Ичиго может не только видеть её, но и, неслыханное дело, касаться. Начавшееся было выяснение отношений прерывается появлением Пустого, того самого, за которым и явилась Рукия. Бой с Пустым складывается неудачно: вынужденную защищать Ичиго, Рукию серьёзно ранят. Ради спасения Ичиго она передаёт ему часть собственных способностей, но, к её удивлению, Ичиго поглощает всю её энергию и сам становится синигами. Оставив Рукию без сил и практически беспомощной, Ичиго с лёгкостью одолевает Пустого.",
+      "description_html": "<div class=\"b-text_with_paragraphs\"><a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго Куросаки</a> с детства мог видеть призраков и духов умерших. Сейчас ему пятнадцать, живёт он в современной Японии и учится в старшей школе.<br>В один ничем не примечательный день в его спальне внезапно объявляется девушка — <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукия Кучики</a>. Она синигами и сильно удивлена тем, что <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> может не только видеть её, но и, неслыханное дело, касаться. Начавшееся было выяснение отношений прерывается появлением Пустого, того самого, за которым и явилась <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукия</a>. Бой с Пустым складывается неудачно: вынужденную защищать <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a>, <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукию</a> серьёзно ранят. Ради спасения <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> она передаёт ему часть собственных способностей, но, к её удивлению, <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> поглощает всю её энергию и сам становится синигами. Оставив <a href=\"https://shikimori.one/characters/6-rukia-kuchiki\" title=\"Rukia Kuchiki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/6-rukia-kuchiki/tooltip\" data-attrs=\"{&quot;id&quot;:6,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Rukia Kuchiki&quot;,&quot;russian&quot;:&quot;Рукия Кучики&quot;}\">Рукию</a> без сил и практически беспомощной, <a href=\"https://shikimori.one/characters/z5-ichigo-kurosaki\" title=\"Ichigo Kurosaki\" class=\"bubbled b-link\" data-tooltip_url=\"https://shikimori.one/characters/z5-ichigo-kurosaki/tooltip\" data-attrs=\"{&quot;id&quot;:5,&quot;type&quot;:&quot;character&quot;,&quot;name&quot;:&quot;Ichigo Kurosaki&quot;,&quot;russian&quot;:&quot;Ичиго Куросаки&quot;}\">Ичиго</a> с лёгкостью одолевает Пустого.</div>",
       "description_source": null,
-      "franchise": "91_days",
+      "franchise": "bleach",
       "favoured": false,
       "anons": false,
       "ongoing": false,
-      "thread_id": 204737,
-      "topic_id": 204737,
-      "myanimelist_id": 33964,
+      "thread_id": 3453,
+      "topic_id": 3453,
+      "myanimelist_id": 269,
       "rates_scores_stats": [
         {
           "name": 10,
-          "value": 270
+          "value": 18896
         },
         {
           "name": 9,
-          "value": 137
+          "value": 11043
         },
         {
           "name": 8,
-          "value": 272
+          "value": 14979
         },
         {
           "name": 7,
-          "value": 524
+          "value": 10369
         },
         {
           "name": 6,
-          "value": 485
+          "value": 4207
         },
         {
           "name": 5,
-          "value": 233
+          "value": 1805
         },
         {
           "name": 4,
-          "value": 50
+          "value": 752
         },
         {
           "name": 3,
-          "value": 21
+          "value": 261
         },
         {
           "name": 2,
-          "value": 10
+          "value": 168
         },
         {
           "name": 1,
-          "value": 28
+          "value": 320
         }
       ],
       "rates_statuses_stats": [
         {
           "name": "Запланировано",
-          "value": 1943
+          "value": 24650
         },
         {
           "name": "Просмотрено",
-          "value": 5970
+          "value": 95601
         },
         {
           "name": "Смотрю",
-          "value": 54
+          "value": 24154
         },
         {
           "name": "Брошено",
-          "value": 140
+          "value": 12676
         },
         {
           "name": "Отложено",
-          "value": 68
+          "value": 8671
         }
       ],
-      "updated_at": "2025-08-01T05:12:19.707+03:00",
+      "updated_at": "2025-08-14T16:34:48.090+03:00",
       "next_episode_at": null,
       "fansubbers": [
-        "Crunchyroll",
-        "AniPlay",
-        "Nippon Tavern",
-        "YakuSub Studio",
-        "IDA",
-        "AOS Team"
+        "VaLLaR",
+        "Мега-Аниме",
+        "Netflix",
+        "Arcane",
+        "Antravoco"
       ],
       "fandubbers": [
-        "Jart-team",
-        "SHIZA Project",
-        "AniChaos",
-        "AnimeJet",
-        "Unravel",
+        "AniDUB",
+        "AniLibria",
+        "Мега-Аниме",
+        "QTV",
+        "СВ-Дубль",
+        "Rain.Death",
         "AniMedia",
-        "AniZone",
-        "Комната Диди"
+        "AniPower",
+        "WiaDub"
       ],
       "licensors": [
-        "Crunchyroll"
+        "Netflix",
+        "2x2"
       ],
       "genres": [
         {
@@ -431,82 +463,211 @@
           "entry_type": "Anime"
         },
         {
-          "id": 8,
-          "name": "Drama",
-          "russian": "Драма",
+          "id": 2,
+          "name": "Adventure",
+          "russian": "Приключения",
           "kind": "genre",
           "entry_type": "Anime"
         },
         {
-          "id": 13,
-          "name": "Historical",
-          "russian": "Исторический",
+          "id": 10,
+          "name": "Fantasy",
+          "russian": "Фэнтези",
+          "kind": "genre",
+          "entry_type": "Anime"
+        },
+        {
+          "id": 27,
+          "name": "Shounen",
+          "russian": "Сёнен",
           "kind": "genre",
           "entry_type": "Anime"
         }
       ],
       "studios": [
         {
-          "id": 1119,
-          "name": "Shuka",
-          "filtered_name": "Shuka",
-          "real": false,
-          "image": "/system/studios/original/1119.png?1589290644"
+          "id": 1,
+          "name": "Studio Pierrot",
+          "filtered_name": "Pierrot",
+          "real": true,
+          "image": "/system/studios/original/1.png?1378753179"
         }
       ],
       "videos": [
         {
-          "id": 51056,
-          "url": "https://youtu.be/jkd__a6WmS4",
-          "image_url": "http://img.youtube.com/vi/jkd__a6WmS4/hqdefault.jpg",
-          "player_url": "http://youtube.com/embed/jkd__a6WmS4",
-          "name": "OP «‎Signal» — TK from Ling tosite sigure",
-          "kind": "op",
-          "hosting": "youtube"
+          "id": 31263,
+          "url": "https://vk.com/video-174476437_456240152",
+          "image_url": "http://sun6-13.userapi.com/c855228/v855228176/1c9055/AxoauPdtX_I.jpg",
+          "player_url": "http://vk.com/video_ext.php?oid=-174476437&id=456240152&hash=b6a00d6480a69d09",
+          "name": "Трейлер FAN",
+          "kind": "pv",
+          "hosting": "vk"
         },
         {
-          "id": 51057,
-          "url": "https://youtu.be/Ad0gGaSeb6M",
-          "image_url": "http://img.youtube.com/vi/Ad0gGaSeb6M/hqdefault.jpg",
-          "player_url": "http://youtube.com/embed/Ad0gGaSeb6M",
-          "name": "ED «Rain or Shine» — ELISA",
-          "kind": "ed",
+          "id": 47026,
+          "url": "https://youtu.be/0yk5H6vvfG4",
+          "image_url": "http://img.youtube.com/vi/0yk5H6vvfG4/hqdefault.jpg",
+          "player_url": "http://youtube.com/embed/0yk5H6vvfG4",
+          "name": "Трейлер DVD16 (VIZ Media) Dub",
+          "kind": "pv",
           "hosting": "youtube"
         }
       ],
       "screenshots": [
         {
-          "original": "/system/screenshots/original/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736",
-          "preview": "/system/screenshots/x332/6d3a6d454b1613a45a4ef3507631f9b3d7fdd093.jpg?1476213736"
+          "original": "/system/screenshots/original/226d9990c5300e964883cdbfb28ea663950a8397.jpg?1677933236",
+          "preview": "/system/screenshots/x332/226d9990c5300e964883cdbfb28ea663950a8397.jpg?1677933236"
         },
         {
-          "original": "/system/screenshots/original/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750",
-          "preview": "/system/screenshots/x332/dd2d7293fc5d35c30c376d4a16374621eed405aa.jpg?1476213750"
+          "original": "/system/screenshots/original/05c642ffc8578b481556939798726b47768f1a93.jpg?1677933236",
+          "preview": "/system/screenshots/x332/05c642ffc8578b481556939798726b47768f1a93.jpg?1677933236"
         }
       ],
       "user_rate": null
     },
-    "anilist": {}
+    "anilist": {
+      "id": 269,
+      "title": {
+        "native": "BLEACH",
+        "romaji": "BLEACH",
+        "english": "Bleach"
+      },
+      "description": "Ichigo Kurosaki is a rather normal high school student apart from the fact he has the ability to see ghosts. This ability never impacted his life in a major way until the day he encounters the Shinigami Kuchiki Rukia, who saves him and his family's lives from a Hollow, a corrupt spirit that devours human souls. \n<br><br>\nWounded during the fight against the Hollow, Rukia chooses the only option available to defeat the monster and passes her Shinigami powers to Ichigo. Now forced to act as a substitute until Rukia recovers, Ichigo hunts down the Hollows that plague his town. \n\n\n",
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png"
+      },
+      "averageScore": 78,
+      "episodes": 366,
+      "status": "FINISHED",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Supernatural"
+      ],
+      "duration": 24,
+      "type": "ANIME",
+      "startDate": {
+        "year": 2004,
+        "month": 10,
+        "day": 5
+      },
+      "airingSchedule": {
+        "nodes": []
+      }
+    }
   },
   "caption_debug": {
-    "title": "",
-    "type": "",
-    "status": null,
-    "genres": [],
-    "rating": 65.5,
-    "episode_count": 1,
-    "release_date": "2016-08-26",
+    "title": "Блич",
+    "type": "TV-сериал",
+    "status": "Завершено",
+    "genres": [
+      "Экшен",
+      "Приключения",
+      "Фэнтези",
+      "Сёнен"
+    ],
+    "rating": 78,
+    "episode_count": 366,
+    "release_date": "2004-10-05",
     "airing_schedule": "",
-    "description": "<blockquote></blockquote>",
-    "cover_image": "https://shikimori.one/system/animes/original/33964.jpg?1711937901",
+    "description": "<blockquote>Ичиго Куросаки с детства мог видеть призраков и духов умерших. Сейчас ему пятнадцать, живёт он в современной Японии и учится в старшей школе. В один ничем не примечательный день в его спальне внезапно объявляется девушка — Рукия Кучики. Она синигами и сильно удивлена тем, что Ичиго может не только видеть её, но и, неслыханное дело, касаться. Начавшееся было выяснение отношений прерывается появлением Пустого, того самого, за которым и явилась Рукия. Бой с Пустым складывается неудачно: вынужденную...</blockquote>",
+    "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
     "raw_data_db": {
-      "total_episodes_relase": 1,
-      "title_ru": "91 день: Короткая свеча",
-      "title_original": "91 Days: Mijikai Rousoku"
+      "total_episodes_relase": 366,
+      "title_ru": "Блич",
+      "title_original": "BLEACH",
+      "airing_schedule_count": 366
     },
     "anime_info_ids": {
-      "shikimori_id": 33964,
-      "anilist_id": ""
+      "shikimori_id": 269,
+      "anilist_id": 269
+    }
+  },
+  "anilist": {
+    "data": {
+      "Media": {
+        "id": 181444,
+        "title": {
+          "native": "薫る花は凛と咲く",
+          "romaji": "Kaoru Hana wa Rin to Saku",
+          "english": "The Fragrant Flower Blooms With Dignity"
+        },
+        "description": "Chidori High is a boys’ school that takes in the dregs of society with the lowest grades. Next door stands Kikyo Girls’ High, where the wealthy, high-class families send their precious daughters. Chidori second-year Rintaro, who has a fierce face but a gentle heart, is helping at his family’s patisserie when he meets a girl named Kaoruko. The two hit it off right away…but this blissful peace is quickly disturbed when Rintaro discovers that Kaoruko is actually a student at Kikyo. Worse, she doesn’t seem to realize what a huge problem this really is! Will these two be able to forge a path for themselves, and sidestep the traps (metaphorical and literal) laid by their classmates?\n<br><br>\n(Source: Kodansha USA)",
+        "coverImage": {
+          "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx181444-Ut9DDUZdfHwg.jpg"
+        },
+        "averageScore": 86,
+        "episodes": 13,
+        "status": "RELEASING",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "duration": 24,
+        "type": "ANIME",
+        "startDate": {
+          "year": 2025,
+          "month": 7,
+          "day": 6
+        },
+        "airingSchedule": {
+          "nodes": [
+            {
+              "episode": 1,
+              "airingAt": 1751729400
+            },
+            {
+              "episode": 2,
+              "airingAt": 1752334200
+            },
+            {
+              "episode": 3,
+              "airingAt": 1752939000
+            },
+            {
+              "episode": 4,
+              "airingAt": 1753543800
+            },
+            {
+              "episode": 5,
+              "airingAt": 1754148600
+            },
+            {
+              "episode": 6,
+              "airingAt": 1754753400
+            },
+            {
+              "episode": 7,
+              "airingAt": 1755358200
+            },
+            {
+              "episode": 8,
+              "airingAt": 1755963000
+            },
+            {
+              "episode": 9,
+              "airingAt": 1756567800
+            },
+            {
+              "episode": 10,
+              "airingAt": 1757172600
+            },
+            {
+              "episode": 11,
+              "airingAt": 1757777400
+            },
+            {
+              "episode": 12,
+              "airingAt": 1758382200
+            },
+            {
+              "episode": 13,
+              "airingAt": 1758987000
+            }
+          ]
+        }
+      }
     }
   }
 }

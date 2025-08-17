@@ -7,7 +7,7 @@ async def formating_data_to_db(shikimori_id, anilist_id, lang: str = "en"):
         raw_data_db = cached_anime["raw_data_db"]
         romaji_name = raw_data_db.get("title_original", "")
         title_ru = raw_data_db.get("title_ru", "")
-        episodes_count = raw_data_db.get("total_episodes_relase", 0)
+        episodes_count = raw_data_db.get("airing_schedule_count", 0)
 
         anime_data = {
             "title_original": romaji_name or f"Unknown_{shikimori_id}",

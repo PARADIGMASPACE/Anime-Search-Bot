@@ -15,6 +15,7 @@ from utils.utils import (
     format_type,
     log_api_response,
 )
+from utils.utils import classify_airing_schedule
 
 
 async def format_anime_caption(anime_info: AnimeInfo, lang: str):
@@ -28,6 +29,25 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
     airing_schedule_data = anime_info.airing_schedule()
 
     airing_schedule = airing_schedule_data.get("airing_schedule_coming")[:3]
+    airing_schedule_classified = airing_schedule_data.get("airing_schedule_anilist", [])
+    classified_schedule = classify_airing_schedule(airing_schedule_classified)
+    aired_episodes_count = len(classified_schedule.get("past", []))
+
+    episode_count_data = anime_info.episode_count()
+    total_episodes = episode_count_data.get("episode_count_anilist") or episode_count_data.get("episode_count_shikimori")
+    status_data = anime_info.status()
+
+    if aired_episodes_count == 0 and total_episodes and total_episodes > 0:
+        status_anilist = status_data.get("status_anilist", "").upper()
+        status_shikimori = status_data.get("status_shikimori", "").lower()
+
+        is_finished = (
+            status_anilist in ["FINISHED", "COMPLETED"] or
+            status_shikimori in ["released", "завершено"]
+        )
+
+        if is_finished:
+            aired_episodes_count = total_episodes
 
     def format_episodes(episodes):
         res = []
@@ -85,13 +105,14 @@ async def format_anime_caption(anime_info: AnimeInfo, lang: str):
     cover_image = get_cover_image(cover_image_data)
 
     raw_data_db = {
-        "total_episodes_relase": episode_count or 0,
+        "total_episodes_relase": aired_episodes_count,
         "title_ru": title_data.get("russian") or "",
         "title_original": title_data.get("romaji")
         or title_data.get("english")
         or f"Unknown_{anime_info.ids.get('shikimori_id', 0)}",
+        "airing_schedule_count": aired_episodes_count
     }
-
+    logger.info(raw_data_db)
     caption_parts = []
     if title:
         caption_parts.append(f"<b>{i18n.t('anime.name', lang=lang)}:</b> {title}")

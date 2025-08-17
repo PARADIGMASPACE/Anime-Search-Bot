@@ -154,7 +154,7 @@ async def check_new_episodes(bot: Bot) -> None:
         await asyncio.gather(*tasks, return_exceptions=True)
 
         if i + batch_size < len(anime_items):
-            sleep_time = random.uniform(5, 3600)
+            sleep_time = random.uniform(5, 60)
             logger.info(f"Sleeping for {sleep_time:.2f} seconds before next batch")
             await asyncio.sleep(sleep_time)
 
