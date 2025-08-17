@@ -12,7 +12,7 @@ class TestFormatingDataToDb:
             "raw_data_db": {
                 "title_original": "Test Anime",
                 "title_ru": "Тестовое Аниме",
-                "total_episodes_relase": 24
+                "airing_schedule_count": 24
             }
         }
 
@@ -40,7 +40,7 @@ class TestFormatingDataToDb:
             "raw_data_db": {
                 "title_original": "",
                 "title_ru": "Русское название",
-                "total_episodes_relase": 0
+                "airing_schedule_count": 0
             }
         }
 
@@ -91,7 +91,7 @@ class TestFormatingDataToDb:
             "raw_data_db": {
                 "title_original": "Fallback Test",
                 "title_ru": "",
-                "total_episodes_relase": 12
+                "airing_schedule_count": 12
             }
         }
 
